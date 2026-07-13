@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRESOL | 소개</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+</head>
+<body>
+
+  <!-- GNB -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/cresol_logo.png" alt="CRESOL 로고">
+      </a>
+
+      <nav class="nav" aria-label="메인 메뉴">
+        <div class="nav-item has-dropdown">
+          <a href="index.html" class="nav-link active">소개</a>
+          <div class="nav-dropdown">
+            <a href="#hero">메인 슬로건 카피</a>
+            <a href="#stats">누적 학회원 수</a>
+            <a href="#stats">운영 기수</a>
+            <a href="#vision">비전 소개 글 + 활동 사진</a>
+            <a href="#schedule">학회 일정</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="project.html" class="nav-link">프로젝트</a>
+          <div class="nav-dropdown">
+            <a href="project.html#filter">기수별 필터링</a>
+            <a href="project.html#projects">표지+타이틀+설명</a>
+            <a href="project.html#projects">운영 기수</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="recruitment.html" class="nav-link">모집 안내</a>
+          <div class="nav-dropdown">
+            <a href="recruitment.html#faq">FAQ</a>
+            <a href="recruitment.html#schedule">학기 일정</a>
+            <a href="recruitment.html#apply">지원 알림받기 / 지원하기</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="apply-dropdown-wrap">
+        <a href="recruitment.html#apply" class="btn-apply">지원하기</a>
+        <div class="nav-dropdown">
+          <a href="recruitment.html#apply-staff">8월 모집 안내 운영진</a>
+          <a href="recruitment.html#apply-member">8월 모집 안내 학회원</a>
+          <a href="recruitment.html#schedule">학기 일정</a>
+          <a href="recruitment.html#apply">지원 버튼</a>
+          <a href="recruitment.html#apply-form">양식 다운 및 메일 주소</a>
+        </div>
+      </div>
+
+      <button class="menu-toggle" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <h1 class="hero-title">WE ARE CRESOL,<br>WE CAN CRESOL</h1>
+        <p class="hero-desc">
+          더 나은 가치를 만들고 싶은 열정적인 학생들의 모임,<br>
+          서비스 디자인 학회 CRESOL 공식 홈페이지입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section" id="stats">
+      <div class="container">
+        <div class="stats-row">
+          <div class="stat-card">
+            <p class="stat-number">200+</p>
+            <p class="stat-label">누적 학회원 수</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-number">16기</p>
+            <p class="stat-label">현재 운영 기수</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision Cards -->
+    <section class="section" id="vision">
+      <div class="container">
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-image">활동을 잘 보여줄 수 있는 사진?</div>
+            <div class="card-body">
+              <h3 class="card-title">CRESOL 활동</h3>
+              <p class="card-text">학회원들이 함께 성장하며 만든 다양한 프로젝트와 세션 활동을 소개합니다.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-image">비전을 나타낼 수 있는 슬로건</div>
+            <div class="card-body">
+              <h3 class="card-title">비전</h3>
+              <p class="card-text">서비스 디자인을 통해 세상의 문제를 발견하고, 더 나은 가치를 만들어갑니다.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-image">분위기를 잘 보여줄 수 있는 사진?</div>
+            <div class="card-body">
+              <h3 class="card-title">CRESOL 분위기</h3>
+              <p class="card-text">열정적인 학생들이 모여 배우고, 실습하고, 프로젝트를 수행하는 학회 문화.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design Thinking -->
+    <section class="section thinking-section">
+      <div class="container">
+        <p class="thinking-label">디자인 씽킹 Design Thinking</p>
+        <h2 class="thinking-title">CRESOL은 어떻게 생각할까?</h2>
+        <p class="thinking-desc">사용자에 대한 관찰과 공감을 기반으로 혁신을 만드는 디자인적 사고방식</p>
+
+        <div class="thinking-diagram">
+          <div class="thinking-node">문제</div>
+          <div class="thinking-connector">
+            <div class="thinking-tags">
+              <span class="thinking-tag">Idea A</span>
+              <span class="thinking-tag">Idea B</span>
+              <span class="thinking-tag">Idea C</span>
+              <span class="thinking-tag">Idea D</span>
+            </div>
+            <div class="thinking-connector-line"></div>
+            <span class="thinking-connector-label">발산</span>
+          </div>
+          <div class="thinking-connector">
+            <div class="thinking-connector-line"></div>
+            <span class="thinking-connector-label">수렴</span>
+          </div>
+          <div class="thinking-node">해결방법</div>
+        </div>
+        <div class="thinking-footer-labels">
+          <span>확산적 사고</span>
+          <span>수렴적 사고</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section class="section" id="activities">
+      <div class="container">
+        <h2 class="section-title">세부 활동 내용</h2>
+
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-circle">강의<br>학습</div>
+          </div>
+          <div class="timeline-arrow"></div>
+          <div class="timeline-step">
+            <div class="timeline-circle">UX/UI<br>실습</div>
+          </div>
+          <div class="timeline-arrow"></div>
+          <div class="timeline-step">
+            <div class="timeline-circle">팀<br>프로젝트</div>
+          </div>
+        </div>
+
+        <div class="activity-list">
+          <div class="activity-item">
+            <span class="activity-label">스터디</span>
+            <p class="activity-desc">학과 강의를 통해 서비스 디자인에 대한 이론적 지식을 습득합니다.</p>
+          </div>
+          <div class="activity-item">
+            <span class="activity-label">워크샵</span>
+            <p class="activity-desc">실습형 활동 세션을 통해 서비스 디자인을 직접 경험합니다.</p>
+          </div>
+          <div class="activity-item">
+            <span class="activity-label">정규 세션</span>
+            <p class="activity-desc">현직자 초청 강연을 통해 생생한 이야기와 조언을 들을 수 있습니다.</p>
+          </div>
+          <div class="activity-item">
+            <span class="activity-label">프로젝트</span>
+            <p class="activity-desc">팀 단위로 이론을 실전에 적용하며, 최종 발표로 마무리합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule -->
+    <section class="section" id="schedule" style="background: var(--color-bg-muted);">
+      <div class="container">
+        <h2 class="section-title">학회 일정</h2>
+        <div class="schedule-timeline">
+          <div class="schedule-step">
+            <p class="schedule-step-title">1학기 개강</p>
+            <p class="schedule-step-date">3월 첫째 주</p>
+          </div>
+          <span class="schedule-arrow">→</span>
+          <div class="schedule-step">
+            <p class="schedule-step-title">중간 발표</p>
+            <p class="schedule-step-date">6월</p>
+          </div>
+          <span class="schedule-arrow">→</span>
+          <div class="schedule-step">
+            <p class="schedule-step-title">2학기 개강</p>
+            <p class="schedule-step-date">9월 첫째 주</p>
+          </div>
+          <span class="schedule-arrow">→</span>
+          <div class="schedule-step">
+            <p class="schedule-step-title">최종 발표</p>
+            <p class="schedule-step-date">12월</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <button class="faq-question">CRESOL은 어떤 학회인가요?</button>
+            <div class="faq-answer">
+              <p>CRESOL은 서비스 디자인을 배우고 실천하는 대학생 학회입니다. 디자인 씽킹 방법론을 기반으로 문제를 발견하고 해결하는 역량을 키웁니다.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">전공이 디자인이 아니어도 지원할 수 있나요?</button>
+            <div class="faq-answer">
+              <p>네, 전공 무관하게 지원 가능합니다. 서비스 디자인에 관심이 있고 함께 성장하고 싶은 분이라면 누구나 환영합니다.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">활동 빈도는 어떻게 되나요?</button>
+            <div class="faq-answer">
+              <p>매주 금요일 19시에 정규 세션이 진행됩니다. 프로젝트 기간에는 추가 미팅이 있을 수 있습니다.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">모집은 언제 하나요?</button>
+            <div class="faq-answer">
+              <p>매년 2월과 8월에 신입 학회원을 모집합니다. 자세한 일정은 모집 안내 페이지에서 확인하세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-buttons">
+          <a href="https://instagram.com" class="btn-contact" target="_blank" rel="noopener">
+            <img src="images/instargram_logo.jpeg" alt="">
+            인스타그램으로 문의
+          </a>
+          <a href="mailto:cresol.official@gmail.com" class="btn-contact">
+            메일로 문의
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <a href="recruitment.html#apply" class="btn-cta-large">지원하기</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <img src="images/cresol_Framelogo.png" alt="CRESOL">
+      </div>
+      <div class="footer-sns">
+        <a href="https://cafe.naver.com" target="_blank" rel="noopener" aria-label="네이버 카페">
+          <img src="images/navercafe_logo.jpeg" alt="네이버 카페">
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="인스타그램">
+          <img src="images/instargram_logo.jpeg" alt="인스타그램">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
