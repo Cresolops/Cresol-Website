@@ -17,28 +17,29 @@
         <a href="index.html" class="nav-link">소개</a>
         <a href="project.html" class="nav-link active">프로젝트</a>
         <a href="recruitment.html" class="nav-link">모집 안내</a>
-        <a href="apply.html" class="btn-apply mobile-show">지원하기</a>
       </nav>
       <a href="apply.html" class="btn-apply">지원하기</a>
       <button class="menu-toggle" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <main>
-    <section class="detail-hero">
-      <div class="container" id="project-detail">
-        <a href="project.html" class="btn-back">← 프로젝트 목록</a>
-        <p class="detail-cohort" id="detail-cohort"></p>
-        <h1 class="detail-title" id="detail-title"></h1>
-        <p class="detail-desc" id="detail-desc"></p>
-        <div class="detail-cover" id="detail-cover"></div>
-        <div class="detail-gallery" id="detail-gallery"></div>
-        <div class="detail-members" id="detail-members" hidden>
-          <h3>팀원</h3>
-          <p id="detail-members-text"></p>
-        </div>
+  <main class="project-detail-container">
+    <!-- 상단 레이아웃: 제목 -> 세부설명 -> (기수 + 팀원) -->
+    <div class="detail-header">
+      <h1 class="detail-title">프로젝트 제목</h1>
+      <p class="detail-desc">프로젝트 설명이 들어갑니다.</p>
+      <div class="detail-meta">
+        <span class="detail-cohort">00기</span>
+        <span class="detail-members">팀원 이름</span>
       </div>
-    </section>
+    </div>
+
+    <!-- 하단 레이아웃: 마우스 휠 스크롤 시 양옆 이동 갤러리 -->
+    <div class="detail-gallery-wrapper">
+      <div class="detail-gallery" id="detail-gallery">
+        <!-- JS로 <img> 요소들이 추가됩니다 -->
+      </div>
+    </div>
   </main>
 
   <footer class="footer">

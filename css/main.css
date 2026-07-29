@@ -584,26 +584,102 @@ button {
   margin-bottom: 20px;
 }
 
+/* 드롭다운 전체 컨테이너 */
 .filter-select {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  font-size: 0.875rem;
-  background: var(--color-bg-card);
-  color: var(--color-text);
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
 }
 
-.filter-select select {
+/* 필터 버튼 (#2F2E39) */
+.filter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 140px;
+  padding: 12px 20px;
+  background-color: #2F2E39;
+  color: #ffffff;
   border: none;
-  background: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
   outline: none;
+}
+
+.filter-btn .arrow {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+/* 열렸을 때 화살표 회전 및 상단 모서리 스타일 변경 */
+.filter-select.open .filter-btn {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.filter-select.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* 드롭다운 바탕 상자 (#605E6F) */
+.filter-dropdown {
+  display: none; /* 기본 상태에서는 숨김 */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 320px;
+  overflow-y: auto;
+  background-color: #605E6F;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 100;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 드롭다운 열림 클래스 */
+.filter-select.open .filter-dropdown {
+  display: block;
+}
+
+/* 옵션 항목 및 구분선 스타일 */
+.filter-dropdown li {
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* 항목 간 구분선 */
+  transition: background-color 0.2s ease;
+}
+
+.filter-dropdown li:last-child {
+  border-bottom: none;
+}
+
+/* 옵션 호버 및 선택 상태 효과 */
+.filter-dropdown li:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.filter-dropdown li.selected {
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 스크롤바 모던 스타일링 */
+.filter-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+.filter-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
 }
 
 .project-grid {
@@ -1369,3 +1445,86 @@ button {
     width: 100%;
   }
 }
+
+/* ==========================================
+   프로젝트 상세페이지 스타일 (이미지 3번 반영)
+   ========================================== */
+   .project-detail-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 24px 80px 24px;
+    color: #ffffff;
+  }
+  
+  .detail-header {
+    max-width: 650px;
+    margin-bottom: 48px;
+  }
+  
+  .detail-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #ffffff;
+  }
+  
+  .detail-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #cccccc;
+    margin-bottom: 24px;
+    word-break: keep-all;
+  }
+  
+  .detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #aaaaaa;
+  }
+  
+  .detail-cohort {
+    font-weight: 600;
+  }
+  
+  /* 갤러리 영역: 가로 스크롤 배치 */
+  .detail-gallery-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 16px;
+  }
+  
+  /* 커스텀 스크롤바 (보라색 포인트 스타일) */
+  .detail-gallery-wrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+  .detail-gallery-wrapper::-webkit-scrollbar-track {
+    background: #1f1f2e;
+    border-radius: 3px;
+  }
+  .detail-gallery-wrapper::-webkit-scrollbar-thumb {
+    background: #7c3aed;
+    border-radius: 3px;
+  }
+  
+  .detail-gallery {
+    display: flex;
+    gap: 20px;
+    width: max-content; /* 이미지 길이에 따라 늘어남 */
+  }
+  
+  .detail-gallery img {
+    height: 380px; /* 이미지 높이 지정 */
+    width: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    background-color: #1a1a1a;
+  }
+  
+  @media (max-width: 768px) {
+    .detail-gallery img {
+      height: 260px;
+    }
+  }

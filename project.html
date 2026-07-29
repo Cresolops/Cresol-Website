@@ -28,25 +28,29 @@
       <div class="container">
         <h1 class="page-title">프로젝트</h1>
         <div class="filter-select" id="filter">
-          <select id="cohort-filter" aria-label="기수 선택">
-            <option value="all">전체 기수</option>
-            <option value="16">16기</option>
-            <option value="15">15기</option>
-            <option value="14">14기</option>
-            <option value="13">13기</option>
-            <option value="12">12기</option>
-            <option value="11">11기</option>
-            <option value="10">10기</option>
-            <option value="9">9기</option>
-            <option value="8">8기</option>
-            <option value="7">7기</option>
-            <option value="6">6기</option>
-            <option value="5">5기</option>
-            <option value="4">4기</option>
-            <option value="3">3기</option>
-            <option value="2">2기</option>
-            <option value="1">1기</option>
-          </select>
+          <!-- 선택된 값을 보여주는 버튼 -->
+          <button type="button" class="filter-btn" id="cohort-filter-btn" aria-expanded="false">
+            <span class="selected-value">전체 기수</span>
+            <span class="arrow">∨</span>
+          </button>
+          
+          <!-- 드롭다운 옵션 목록 -->
+          <ul class="filter-dropdown" id="cohort-dropdown">
+            <li data-value="all" class="selected">전체 기수</li>
+            <li data-value="15">15기</li>
+            <li data-value="14">14기</li>
+            <li data-value="13">13기</li>
+            <li data-value="12">12기</li>
+            <li data-value="11">11기</li>
+            <li data-value="10">10기</li>
+            <li data-value="9">9기</li>
+            <li data-value="8">8기</li>
+            <li data-value="7">7기</li>
+            <li data-value="6">6기</li>
+            <li data-value="5">5기</li>
+            <li data-value="4">4기</li>
+            <li data-value="3">3기</li>
+          </ul>
         </div>
       </div>
     </section>

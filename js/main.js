@@ -1,7 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // 공통 기능 및 페이지 초기화 실행
   initMobileNav();
   initFaq();
   initProjectPage();
+
+  // 1. URL 주소에서 ?id= 파라미터 가져와 상세페이지 채우기
+  const urlParams = new URLSearchParams(window.location.search);
+  const projectId = urlParams.get("id");
+
+  if (document.querySelector(".detail-title") && typeof PROJECTS !== "undefined") {
+    const project = PROJECTS.find((p) => p.id === projectId);
+
+    if (!project) {
+      alert("존재하지 않는 프로젝트입니다.");
+      window.location.href = "project.html";
+      return;
+    }
+
+    // HTML 데이터 연결
+    const titleEl = document.querySelector(".detail-title");
+    const descEl = document.querySelector(".detail-desc");
+    const cohortEl = document.querySelector(".detail-cohort");
+    const membersEl = document.querySelector(".detail-members");
+    const galleryEl = document.getElementById("detail-gallery");
+    const galleryWrapper = document.querySelector(".detail-gallery-wrapper");
+
+    if (titleEl) titleEl.textContent = project.title;
+    if (descEl) descEl.textContent = project.desc;
+    if (cohortEl) cohortEl.textContent = `${project.cohort}기`;
+    if (membersEl) membersEl.textContent = project.members || "팀원 정보 없음";
+
+    // 이미지 출력
+    if (galleryEl && project.images && project.images.length > 0) {
+      galleryEl.innerHTML = project.images
+        .map((imgSrc) => `<img src="${imgSrc}" alt="${project.title} 이미지">`)
+        .join("");
+    }
+
+    // 마우스 휠 스크롤 시 가로(양옆)로 이동하는 로직
+    if (galleryWrapper) {
+      galleryWrapper.addEventListener("wheel", (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          galleryWrapper.scrollLeft += e.deltaY * 2.5;
+        }
+      }, { passive: false });
+    }
+  }
+
+  initVisionCarousel();
 });
 
 function initMobileNav() {
@@ -24,8 +71,7 @@ function initMobileNav() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // 1. FAQ 탭 전환 (지원 / 활동 / 수료)
+function initFaq() {
   const tabs = document.querySelectorAll(".faq-tab");
   const panels = document.querySelectorAll(".faq-panel");
 
@@ -46,17 +92,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // 2. FAQ 질문 클릭 시 답변 열기/닫기 (아코디언)
   const questions = document.querySelectorAll(".faq-question");
-
   questions.forEach((btn) => {
     btn.addEventListener("click", function () {
       const item = this.closest(".faq-item");
-      
-      // 현재 클릭한 항목이 열려있는지 확인
       const isOpen = item.classList.contains("open");
 
-      // 동일한 탭 안에 있는 다른 질문들을 모두 닫음
       const parentList = item.closest(".faq-list");
       if (parentList) {
         parentList.querySelectorAll(".faq-item").forEach((el) => {
@@ -64,47 +105,66 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
 
-      // 클릭한 질문만 열기 (이미 열려있었다면 닫힘)
       if (!isOpen) {
         item.classList.add("open");
       }
     });
   });
-});
-
-const PROJECTS = [
-  { id: 1, cohort: 16, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 2, cohort: 16, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 3, cohort: 15, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 4, cohort: 15, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 5, cohort: 16, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 6, cohort: 15, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 7, cohort: 16, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 8, cohort: 15, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 9, cohort: 16, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 10, cohort: 15, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 11, cohort: 16, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 12, cohort: 15, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 13, cohort: 14, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 14, cohort: 14, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-  { id: 15, cohort: 14, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
-];
+}
 
 const ITEMS_PER_PAGE = 12;
 
 function initProjectPage() {
   const grid = document.getElementById("project-grid");
-  const filter = document.getElementById("cohort-filter");
   const pagination = document.getElementById("pagination");
 
-  if (!grid) return;
+  const filterSelect = document.getElementById("filter");
+  const filterBtn = document.getElementById("cohort-filter-btn");
+  const selectedValue = filterBtn?.querySelector(".selected-value");
+  const dropdown = document.getElementById("cohort-dropdown");
+  const options = dropdown?.querySelectorAll("li");
+
+  if (!grid || typeof PROJECTS === "undefined") return;
 
   let currentFilter = "all";
   let currentPage = 1;
 
+  if (filterBtn && filterSelect) {
+    filterBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = filterSelect.classList.toggle("open");
+      filterBtn.setAttribute("aria-expanded", isOpen);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (filterSelect && !filterSelect.contains(e.target)) {
+        filterSelect.classList.remove("open");
+        filterBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  // 드롭다운 기수 선택 시 필터링 처리
+  options?.forEach((option) => {
+    option.addEventListener("click", () => {
+      options.forEach((opt) => opt.classList.remove("selected"));
+      option.classList.add("selected");
+      if (selectedValue) selectedValue.textContent = option.textContent;
+
+      const value = option.getAttribute("data-value") || "all";
+      currentFilter = value;
+      currentPage = 1;
+
+      render();
+
+      filterSelect?.classList.remove("open");
+      filterBtn?.setAttribute("aria-expanded", "false");
+    });
+  });
+
   function getFiltered() {
     if (currentFilter === "all") return PROJECTS;
-    return PROJECTS.filter((p) => p.cohort === Number(currentFilter));
+    return PROJECTS.filter((p) => String(p.cohort) === String(currentFilter));
   }
 
   function render() {
@@ -118,14 +178,18 @@ function initProjectPage() {
     grid.innerHTML = pageItems
       .map(
         (p) => `
-      <article class="project-card" data-cohort="${p.cohort}">
-        <div class="project-cover" aria-hidden="true"></div>
-        <div class="project-body">
-          <span class="project-cohort">${p.cohort}기</span>
-          <h3 class="project-name">${p.title}</h3>
-          <p class="project-desc">${p.desc}</p>
-        </div>
-      </article>`
+        <a href="project-detail.html?id=${p.id}" class="project-card-link" style="text-decoration: none; color: inherit;">
+          <article class="project-card" data-cohort="${p.cohort}">
+            <div class="project-cover">
+              ${p.cover ? `<img src="${p.cover}" alt="${p.title}" style="width:100%; height:100%; object-fit:cover;">` : ''}
+            </div>
+            <div class="project-body">
+              <span class="project-cohort">${p.cohort}기</span>
+              <h3 class="project-name">${p.title}</h3>
+              <p class="project-desc">${p.desc}</p>
+            </div>
+          </article>
+        </a>`
       )
       .join("");
 
@@ -166,20 +230,8 @@ function initProjectPage() {
     });
   }
 
-  if (filter) {
-    filter.addEventListener("change", () => {
-      currentFilter = filter.value;
-      currentPage = 1;
-      render();
-    });
-  }
-
   render();
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  initVisionCarousel();
-});
 
 function initVisionCarousel() {
   const container = document.querySelector(".value-carousel");
@@ -188,19 +240,14 @@ function initVisionCarousel() {
   let cards = Array.from(container.querySelectorAll(".value-card"));
   let timer = null;
 
-  // 1. 카드의 위치와 active 상태 갱신 함수
   function updateCarousel() {
-    // 768px 이하 모바일 화면일 때는 캐러셀 루프 동작 안 함
     if (window.innerWidth <= 768) {
       cards.forEach((card) => card.classList.remove("active"));
       return;
     }
 
-    // 배열 순서대로 컨테이너에 다시 추가하여 DOM 순서 변경
     cards.forEach((card, index) => {
       container.appendChild(card);
-      
-      // 가운데(index 1) 카드에만 active 부여
       if (index === 1) {
         card.classList.add("active");
       } else {
@@ -209,35 +256,29 @@ function initVisionCarousel() {
     });
   }
 
-  // 2. 다음 카드로 회전 (루프)
   function nextSlide() {
     if (window.innerWidth <= 768) return;
-    // 맨 앞 카드를 꺼내 맨 뒤로 보냄
     const firstCard = cards.shift();
     cards.push(firstCard);
     updateCarousel();
   }
 
-  // 3. 이전 카드로 회전
   function prevSlide() {
     if (window.innerWidth <= 768) return;
-    // 맨 뒤 카드를 꺼내 맨 앞으로 보냄
     const lastCard = cards.pop();
     cards.unshift(lastCard);
     updateCarousel();
   }
 
-  // 4. 8초 주기 타이머 시작
   function startAutoPlay() {
     stopAutoPlay();
-    timer = setInterval(nextSlide, 8000); // 8000ms = 8초
+    timer = setInterval(nextSlide, 8000);
   }
 
   function stopAutoPlay() {
     if (timer) clearInterval(timer);
   }
 
-  // 5. 클릭 시 강제 전환 기능
   container.addEventListener("click", (e) => {
     if (window.innerWidth <= 768) return;
 
@@ -246,23 +287,18 @@ function initVisionCarousel() {
 
     const clickedIndex = cards.indexOf(clickedCard);
 
-    // 왼쪽(0번) 카드를 누르면 이전 장으로
     if (clickedIndex === 0) {
       prevSlide();
-      startAutoPlay(); // 클릭 후 8초 타이머 리셋
-    } 
-    // 오른쪽(2번) 카드를 누르면 다음 장으로
-    else if (clickedIndex === 2) {
+      startAutoPlay();
+    } else if (clickedIndex === 2) {
       nextSlide();
-      startAutoPlay(); // 클릭 후 8초 타이머 리셋
+      startAutoPlay();
     }
   });
 
-  // 초기화 실행
   updateCarousel();
   startAutoPlay();
 
-  // 창 크기 변경 대응
   window.addEventListener("resize", () => {
     updateCarousel();
   });
