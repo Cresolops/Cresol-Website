@@ -5,256 +5,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRESOL | 모집 안내</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
 </head>
 <body>
 
-  <!-- GNB -->
   <header class="header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
         <img src="images/cresol_logo.png" alt="CRESOL 로고">
       </a>
-
       <nav class="nav" aria-label="메인 메뉴">
-        <div class="nav-item has-dropdown">
-          <a href="index.html" class="nav-link">소개</a>
-          <div class="nav-dropdown">
-            <a href="index.html#hero">메인 슬로건 카피</a>
-            <a href="index.html#stats">누적 학회원 수</a>
-            <a href="index.html#stats">운영 기수</a>
-            <a href="index.html#vision">비전 소개 글 + 활동 사진</a>
-            <a href="index.html#schedule">학회 일정</a>
-          </div>
-        </div>
-        <div class="nav-item has-dropdown">
-          <a href="project.html" class="nav-link">프로젝트</a>
-          <div class="nav-dropdown">
-            <a href="project.html#filter">기수별 필터링</a>
-            <a href="project.html#projects">표지+타이틀+설명</a>
-            <a href="project.html#projects">운영 기수</a>
-          </div>
-        </div>
-        <div class="nav-item has-dropdown">
-          <a href="recruitment.html" class="nav-link active">모집 안내</a>
-          <div class="nav-dropdown">
-            <a href="#faq">FAQ</a>
-            <a href="#schedule">학기 일정</a>
-            <a href="#apply">지원 알림받기 / 지원하기</a>
-          </div>
-        </div>
+        <a href="index.html" class="nav-link">소개</a>
+        <a href="project.html" class="nav-link">프로젝트</a>
+        <a href="recruitment.html" class="nav-link active">모집 안내</a>
       </nav>
-
-      <div class="apply-dropdown-wrap">
-        <a href="#apply" class="btn-apply">지원하기</a>
-        <div class="nav-dropdown">
-          <a href="#apply-staff">8월 모집 안내 운영진</a>
-          <a href="#apply-member">8월 모집 안내 학회원</a>
-          <a href="#schedule">학기 일정</a>
-          <a href="#apply">지원 버튼</a>
-          <a href="#apply-form">양식 다운 및 메일 주소</a>
-        </div>
-      </div>
-
-      <button class="menu-toggle" aria-label="메뉴 열기">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="apply.html" class="btn-apply">지원하기</a>
+      <button class="menu-toggle" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
     </div>
   </header>
 
   <main>
-    <!-- Recruitment Schedule -->
     <section class="section" id="schedule">
       <div class="container">
         <h2 class="section-title">모집 일정</h2>
         <div class="schedule-timeline">
           <div class="schedule-step">
             <p class="schedule-step-title">서류 접수</p>
-            <p class="schedule-step-date">~ 8.19 18:00</p>
+            <p class="schedule-step-date">8.18 – 8.24</p>
           </div>
           <span class="schedule-arrow">→</span>
           <div class="schedule-step">
-            <p class="schedule-step-title">서류 합격 발표</p>
-            <p class="schedule-step-date">8.20</p>
+            <p class="schedule-step-title">서류 합격자 발표</p>
+            <p class="schedule-step-date">8.26</p>
           </div>
           <span class="schedule-arrow">→</span>
           <div class="schedule-step">
-            <p class="schedule-step-title">면접 일자</p>
-            <p class="schedule-step-date">8.21 – 8.22</p>
+            <p class="schedule-step-title">면접 일정</p>
+            <p class="schedule-step-date">8.27 – 8.29</p>
           </div>
           <span class="schedule-arrow">→</span>
           <div class="schedule-step">
-            <p class="schedule-step-title">합격 발표</p>
-            <p class="schedule-step-date">8.25</p>
+            <p class="schedule-step-title">최종 합격</p>
+            <p class="schedule-step-date">8.31</p>
           </div>
         </div>
-        <p class="schedule-note">* 8.20에 면접 일정 및 장소를 문자로 안내드립니다.</p>
+        <p class="schedule-note">* 2024년 2학기(16기) 모집 일정 기준입니다.</p>
       </div>
     </section>
 
-    <!-- Eligibility -->
-    <section class="section" id="eligibility" style="background: var(--color-bg-muted);">
-      <div class="container">
-        <h2 class="section-title">지원 자격</h2>
-        <div class="eligibility-box">
-          서울에서 활동 가능한 4년제 대학 재학생 및 휴학생, 전공 무관
-        </div>
-      </div>
-    </section>
-
-    <!-- Details -->
     <section class="section" id="details">
       <div class="container">
-        <h2 class="section-title">세부 사항</h2>
+        <h2 class="section-title">세부사항</h2>
         <table class="info-table">
-          <tr>
-            <th>활동 기간</th>
-            <td>1년 (2025.09 – 2026.08)</td>
-          </tr>
-          <tr>
-            <th>활동 회비</th>
-            <td>5만원</td>
-          </tr>
-          <tr>
-            <th>세션 장소</th>
-            <td>서울 지역 공유 공간 &amp; 온라인 DISCORD</td>
-          </tr>
-          <tr>
-            <th>세션 일시</th>
-            <td>매주 금 19시</td>
-          </tr>
+          <tr><th>활동 기간</th><td>24.09.04 ~ 2024.12.11</td></tr>
+          <tr><th>활동 회차</th><td>14회</td></tr>
+          <tr><th>정기 모임</th><td>매주 수요일 저녁 7시 ~ 10시</td></tr>
+          <tr><th>정기 장소</th><td>서울 지역 대학 캠퍼스 및 오프라인 공간</td></tr>
         </table>
       </div>
     </section>
 
-    <!-- Activities -->
-    <section class="section" id="activities" style="background: var(--color-bg-muted);">
+    <section class="section" id="eligibility">
       <div class="container">
-        <h2 class="section-title">세부 활동 내용</h2>
-
-        <div class="timeline">
-          <div class="timeline-step">
-            <div class="timeline-circle">강의<br>학습</div>
-          </div>
-          <div class="timeline-arrow"></div>
-          <div class="timeline-step">
-            <div class="timeline-circle">UI/UX<br>실습</div>
-          </div>
-          <div class="timeline-arrow"></div>
-          <div class="timeline-step">
-            <div class="timeline-circle">팀<br>프로젝트</div>
-          </div>
-        </div>
-
-        <div class="activity-list">
-          <div class="activity-item">
-            <span class="activity-label">교육 세션</span>
-            <p class="activity-desc">학과 강의를 통해 서비스 디자인에 대한 이론적 지식을 습득합니다.</p>
-          </div>
-          <div class="activity-item">
-            <span class="activity-label">실습 활동</span>
-            <p class="activity-desc">실습형 활동 세션을 통해 서비스 디자인을 직접 경험합니다.</p>
-          </div>
-          <div class="activity-item">
-            <span class="activity-label">초청 강연</span>
-            <p class="activity-desc">현직자 초청 강연을 통해 생생한 이야기와 조언을 들을 수 있습니다.</p>
-          </div>
-          <div class="activity-item">
-            <span class="activity-label">프로젝트</span>
-            <p class="activity-desc">팀 단위로 이론을 실전에 적용하며, 최종 발표로 마무리합니다.</p>
-          </div>
+        <h2 class="section-title">지원 자격</h2>
+        <div class="eligibility-box">
+          서비스디자인(Service Design)에 관심 있는 대학생 및 대학원생 (전공 무관)
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
+    <section class="section" id="week-schedule">
+      <div class="container">
+        <h2 class="section-title">16기 주요 활동 일정</h2>
+        <div class="week-grid">
+          <div class="week-card"><p class="week-card-num">WEEK 01</p><p class="week-card-title">OT / 첫만남</p><p class="week-card-desc">학회 소개 및 팀 빌딩</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 02</p><p class="week-card-title">워크숍</p><p class="week-card-desc">디자인 씽킹 기초</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 03</p><p class="week-card-title">교육 세션</p><p class="week-card-desc">서비스 디자인 이론</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 04</p><p class="week-card-title">실습 활동</p><p class="week-card-desc">UX/UI 실습</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 05</p><p class="week-card-title">초청 강연</p><p class="week-card-desc">현직자 특강</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 06</p><p class="week-card-title">프로젝트</p><p class="week-card-desc">팀 프로젝트 시작</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 07</p><p class="week-card-title">중간 발표</p><p class="week-card-desc">중간 점검</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 08</p><p class="week-card-title">현장 조사</p><p class="week-card-desc">리서치 &amp; 인터뷰</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 09</p><p class="week-card-title">프로토타입</p><p class="week-card-desc">아이디어 구체화</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 10</p><p class="week-card-title">멘토링</p><p class="week-card-desc">피드백 세션</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 11</p><p class="week-card-title">프로젝트</p><p class="week-card-desc">최종 작업</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 12</p><p class="week-card-title">리허설</p><p class="week-card-desc">발표 준비</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 13</p><p class="week-card-title">최종 발표</p><p class="week-card-desc">프로젝트 발표회</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 14</p><p class="week-card-title">수료 / 네트워킹</p><p class="week-card-desc">졸업 &amp; 네트워킹</p></div>
+          <div class="week-card"><p class="week-card-num">WEEK 15</p><p class="week-card-title">회고</p><p class="week-card-desc">학기 마무리</p></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="faq">
       <div class="container">
         <h2 class="section-title">FAQ</h2>
-        <div class="faq-list">
-          <div class="faq-item open">
-            <button class="faq-question">자주 물을 것 같은 예상 질문을 입력해 주세요?</button>
-            <div class="faq-answer">
-              <p>답변을 입력해 주세요. 지원 자격, 활동 시간, 회비 등에 대한 안내를 작성하면 좋습니다.</p>
+        <div class="faq-tabs" role="tablist">
+          <button class="faq-tab active" data-tab="apply" role="tab">지원</button>
+          <button class="faq-tab" data-tab="activity" role="tab">활동</button>
+          <button class="faq-tab" data-tab="graduate" role="tab">수료</button>
+        </div>
+
+        <div class="faq-panel active" data-panel="apply">
+          <div class="faq-list">
+            <div class="faq-item open">
+              <button class="faq-question">포트폴리오 제출이 필수인가요?</button>
+              <div class="faq-answer"><p>포트폴리오 제출은 필수가 아닙니다. 관련 경험이 있다면 지원서에 함께 작성해 주세요.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">지원 자격은 어떻게 되나요?</button>
+              <div class="faq-answer"><p>서비스 디자인에 관심 있는 대학생 및 대학원생이면 전공 무관하게 지원 가능합니다.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">활동 회비가 있나요?</button>
+              <div class="faq-answer"><p>학기별 활동 회비가 있으며, 합격 후 별도 안내됩니다.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">면접은 어떻게 진행되나요?</button>
+              <div class="faq-answer"><p>서류 합격자에 한해 대면 또는 온라인 면접이 진행됩니다. 일정은 개별 안내됩니다.</p></div>
             </div>
           </div>
-          <div class="faq-item">
-            <button class="faq-question">자주 물을 것 같은 예상 질문을 입력해 주세요?</button>
-            <div class="faq-answer">
-              <p>답변을 입력해 주세요.</p>
+        </div>
+
+        <div class="faq-panel" data-panel="activity">
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question">활동 빈도는 어떻게 되나요?</button>
+              <div class="faq-answer"><p>매주 수요일 저녁 7시~10시 정규 세션이 진행됩니다.</p></div>
             </div>
           </div>
-          <div class="faq-item">
-            <button class="faq-question">자주 물을 것 같은 예상 질문을 입력해 주세요?</button>
-            <div class="faq-answer">
-              <p>답변을 입력해 주세요.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">자주 물을 것 같은 예상 질문을 입력해 주세요?</button>
-            <div class="faq-answer">
-              <p>답변을 입력해 주세요.</p>
+        </div>
+
+        <div class="faq-panel" data-panel="graduate">
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question">수료 기준은 무엇인가요?</button>
+              <div class="faq-answer"><p>출석률과 프로젝트 참여도를 종합하여 수료 여부를 결정합니다.</p></div>
             </div>
           </div>
         </div>
 
         <div class="contact-buttons">
           <a href="https://instagram.com" class="btn-contact" target="_blank" rel="noopener">
-            <img src="images/instargram_logo.jpeg" alt="">
-            인스타그램으로 문의
+            <img src="images/instargram_logo.png" alt=""> 인스타그램 문의
           </a>
-          <a href="mailto:cresol.official@gmail.com" class="btn-contact">
-            메일로 문의
+          <a href="mailto:cresolops@gmail.com" class="btn-contact">
+            <img src="images/mail_logo.png" alt=""> 메일 문의
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Apply Sections -->
-    <section class="section" id="apply" style="background: var(--color-bg-muted);">
-      <div class="container">
-        <h2 class="section-title">지원하기</h2>
-
-        <div class="apply-info-box" id="apply-staff">
-          <h3>8월 모집 안내 — 운영진</h3>
-          <p>운영진 모집에 관심 있는 분들을 위한 안내입니다. 리더십과 학회 운영에 열정이 있는 분을 기다립니다.</p>
-        </div>
-
-        <div class="apply-info-box" id="apply-member">
-          <h3>8월 모집 안내 — 학회원</h3>
-          <p>신입 학회원 모집 안내입니다. 서비스 디자인에 관심 있는 4년제 대학 재학생 및 휴학생을 모집합니다.</p>
-        </div>
-
-        <div class="apply-info-box" id="apply-form">
-          <h3>온라인 지원서 작성</h3>
-          <p>아래 버튼을 눌러 온라인 지원서를 작성하고 제출해 주세요. 작성 중인 내용은 자동 임시저장됩니다.</p>
-          <p><a href="apply.html">지원서 작성하러 가기 →</a></p>
-          <p>문의 메일: <a href="mailto:cresolops@gmail.com">cresolops@gmail.com</a></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
     <section class="cta-section">
+      <div class="cta-glow"></div>
       <div class="container">
         <a href="apply.html" class="btn-cta-large">지원하기</a>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-logo">
         <img src="images/cresol_Framelogo.png" alt="CRESOL">
       </div>
       <div class="footer-sns">
-        <a href="https://cafe.naver.com/cresol" target="_blank" rel="noopener" aria-label="네이버 카페">
-          <img src="images/navercafe_logo.png" alt="네이버 카페">
+        <a href="mailto:cresolops@gmail.com" aria-label="이메일 문의">
+          <img src="images/mail_logo.png" alt="메일">
         </a>
         <a href="https://www.instagram.com/cresol_/" target="_blank" rel="noopener" aria-label="인스타그램">
           <img src="images/instargram_logo.png" alt="인스타그램">
+        </a>
+        <a href="https://cafe.naver.com/cresol" target="_blank" rel="noopener" aria-label="네이버 카페">
+          <img src="images/navercafe_logo.png" alt="네이버 카페">
         </a>
       </div>
     </div>

@@ -5,66 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRESOL | 소개</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
 </head>
 <body>
 
-  <!-- GNB -->
   <header class="header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
         <img src="images/cresol_logo.png" alt="CRESOL 로고">
       </a>
-
       <nav class="nav" aria-label="메인 메뉴">
-        <div class="nav-item has-dropdown">
-          <a href="index.html" class="nav-link active">소개</a>
-          <div class="nav-dropdown">
-            <a href="#hero">메인 슬로건 카피</a>
-            <a href="#stats">누적 학회원 수</a>
-            <a href="#stats">운영 기수</a>
-            <a href="#vision">비전 소개 글 + 활동 사진</a>
-            <a href="#schedule">학회 일정</a>
-          </div>
-        </div>
-        <div class="nav-item has-dropdown">
-          <a href="project.html" class="nav-link">프로젝트</a>
-          <div class="nav-dropdown">
-            <a href="project.html#filter">기수별 필터링</a>
-            <a href="project.html#projects">표지+타이틀+설명</a>
-            <a href="project.html#projects">운영 기수</a>
-          </div>
-        </div>
-        <div class="nav-item has-dropdown">
-          <a href="recruitment.html" class="nav-link">모집 안내</a>
-          <div class="nav-dropdown">
-            <a href="recruitment.html#faq">FAQ</a>
-            <a href="recruitment.html#schedule">학기 일정</a>
-            <a href="recruitment.html#apply">지원 알림받기 / 지원하기</a>
-          </div>
-        </div>
+        <a href="index.html" class="nav-link active">소개</a>
+        <a href="project.html" class="nav-link">프로젝트</a>
+        <a href="recruitment.html" class="nav-link">모집 안내</a>
       </nav>
-
-      <div class="apply-dropdown-wrap">
-        <a href="recruitment.html#apply" class="btn-apply">지원하기</a>
-        <div class="nav-dropdown">
-          <a href="recruitment.html#apply-staff">8월 모집 안내 운영진</a>
-          <a href="recruitment.html#apply-member">8월 모집 안내 학회원</a>
-          <a href="recruitment.html#schedule">학기 일정</a>
-          <a href="recruitment.html#apply">지원 버튼</a>
-          <a href="recruitment.html#apply-form">양식 다운 및 메일 주소</a>
-        </div>
-      </div>
-
-      <button class="menu-toggle" aria-label="메뉴 열기">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="apply.html" class="btn-apply">지원하기</a>
+      <button class="menu-toggle" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
     </div>
   </header>
 
   <main>
-    <!-- Hero -->
     <section class="hero" id="hero">
       <div class="container">
         <h1 class="hero-title">WE ARE CRESOL,<br>WE CAN CRESOL</h1>
@@ -72,82 +31,55 @@
           더 나은 가치를 만들고 싶은 열정적인 학생들의 모임,<br>
           서비스 디자인 학회 CRESOL 공식 홈페이지입니다.
         </p>
-      </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="section" id="stats">
-      <div class="container">
-        <div class="stats-row">
-          <div class="stat-card">
-            <p class="stat-number">200+</p>
-            <p class="stat-label">누적 학회원 수</p>
-          </div>
-          <div class="stat-card">
-            <p class="stat-number">16기</p>
-            <p class="stat-label">현재 운영 기수</p>
-          </div>
+        <div class="hero-logo-center">
+          <img src="images/소개_크리솔로고중앙.png" alt="CRESOL 로고">
         </div>
       </div>
     </section>
 
-    <!-- Vision Cards -->
     <section class="section" id="vision">
       <div class="container">
-        <div class="card-grid">
-          <article class="card">
-            <div class="card-image">활동을 잘 보여줄 수 있는 사진?</div>
-            <div class="card-body">
-              <h3 class="card-title">CRESOL 활동</h3>
-              <p class="card-text">학회원들이 함께 성장하며 만든 다양한 프로젝트와 세션 활동을 소개합니다.</p>
+        <div class="value-carousel">
+          <article class="value-card">
+            <div class="value-card-image">
+              <img src="images/소개_현직자.png" alt="현직자 초청 강연">
+            </div>
+            <div class="value-card-body">
+              <h3 class="value-card-title">현직자와 특강 & OB 네트워킹</h3>
+              <p class="value-card-text">실무자와 크리솔 OB의 생생한 경험을 듣고, 크리솔 커뮤니티를 통해 함께 성장합니다.</p>
             </div>
           </article>
-          <article class="card">
-            <div class="card-image">비전을 나타낼 수 있는 슬로건</div>
-            <div class="card-body">
-              <h3 class="card-title">비전</h3>
-              <p class="card-text">서비스 디자인을 통해 세상의 문제를 발견하고, 더 나은 가치를 만들어갑니다.</p>
+
+          <article class="value-card featured">
+            <div class="value-card-image">
+              <img src="images/소개_크리솔로고중앙.png" alt="CRESOL">
+            </div>
+            <div class="value-card-body">
+              <h3 class="value-card-title">사용자의 시선에서, 더 나은 경험을 설계하다</h3>
+              <p class="value-card-text">서비스디자인 프로세스를 통해 사고하는 방법을 배우고, 문제의 본질을 발견해 새로운 경험을 만들어갑니다.</p>
             </div>
           </article>
-          <article class="card">
-            <div class="card-image">분위기를 잘 보여줄 수 있는 사진?</div>
-            <div class="card-body">
-              <h3 class="card-title">CRESOL 분위기</h3>
-              <p class="card-text">열정적인 학생들이 모여 배우고, 실습하고, 프로젝트를 수행하는 학회 문화.</p>
+
+          <article class="value-card">
+            <div class="value-card-image">
+              <img src="images/소개_한학기.png" alt="CRESOL 한 학기 활동">
+            </div>
+            <div class="value-card-body">
+              <h3 class="value-card-title">한 학기, 하나의 프로젝트</h3>
+              <p class="value-card-text">팀별로 주제를 정해 리서치부터 프로토타입까지 완주합니다. 최종 발표에서는 현직 전문가의 피드백을 받아요.</p>
             </div>
           </article>
+
+
         </div>
       </div>
     </section>
 
-    <!-- Design Thinking -->
-    <section class="section thinking-section">
+    <section class="section thinking-section" id="thinking">
       <div class="container">
-        <p class="thinking-label">디자인 씽킹 Design Thinking</p>
-        <h2 class="thinking-title">CRESOL은 어떻게 생각할까?</h2>
-        <p class="thinking-desc">사용자에 대한 관찰과 공감을 기반으로 혁신을 만드는 디자인적 사고방식</p>
-
-        <div class="thinking-diagram">
-          <div class="thinking-node">문제</div>
-          <div class="thinking-connector">
-            <div class="thinking-tags">
-              <span class="thinking-tag">Idea A</span>
-              <span class="thinking-tag">Idea B</span>
-              <span class="thinking-tag">Idea C</span>
-              <span class="thinking-tag">Idea D</span>
-            </div>
-            <div class="thinking-connector-line"></div>
-            <span class="thinking-connector-label">발산</span>
-          </div>
-          <div class="thinking-connector">
-            <div class="thinking-connector-line"></div>
-            <span class="thinking-connector-label">수렴</span>
-          </div>
-          <div class="thinking-node">해결방법</div>
-        </div>
-        <div class="thinking-footer-labels">
-          <span>확산적 사고</span>
-          <span>수렴적 사고</span>
+        <h2 class="section-title">Design Thinking</h2>
+        <div class="thinking-image">
+          <img src="images/디자인씽킹web.png" alt="디자인 씽킹 프로세스 다이어그램">
         </div>
       </div>
     </section>
@@ -156,133 +88,178 @@
     <section class="section" id="activities">
       <div class="container">
         <h2 class="section-title">세부 활동 내용</h2>
-
-        <div class="timeline">
-          <div class="timeline-step">
-            <div class="timeline-circle">강의<br>학습</div>
-          </div>
-          <div class="timeline-arrow"></div>
-          <div class="timeline-step">
-            <div class="timeline-circle">UX/UI<br>실습</div>
-          </div>
-          <div class="timeline-arrow"></div>
-          <div class="timeline-step">
-            <div class="timeline-circle">팀<br>프로젝트</div>
+        <div class="activity-icons">
+          <div class="scchedule_detail">
+            <img src="images/scchedule_detail.png" alt="세부 활동 내용 다이어그램">
           </div>
         </div>
-
         <div class="activity-list">
           <div class="activity-item">
-            <span class="activity-label">스터디</span>
-            <p class="activity-desc">학과 강의를 통해 서비스 디자인에 대한 이론적 지식을 습득합니다.</p>
+            <span class="activity-label">교육 세션</span>
+            <p></p>
+            <p class="activity-desc">학술부의 강의 교육을 통해 서비스디자인의 이론적 지식을 학습합니다.</p>
           </div>
           <div class="activity-item">
-            <span class="activity-label">워크샵</span>
-            <p class="activity-desc">실습형 활동 세션을 통해 서비스 디자인을 직접 경험합니다.</p>
+            <span class="activity-label">실습 활동</span>
+            <p></p>
+            <p class="activity-desc">실습 시간 팀별 활동을 통해 서비스디자인을 실현해 나갑니다.</p>
           </div>
           <div class="activity-item">
-            <span class="activity-label">정규 세션</span>
-            <p class="activity-desc">현직자 초청 강연을 통해 생생한 이야기와 조언을 들을 수 있습니다.</p>
+            <span class="activity-label">초청 강연</span>
+            <p></p>
+            <p class="activity-desc">현직 전문가분들의 조언과 현업에 관한 생생한 이야기를 들을 수 있습니다.</p>
           </div>
           <div class="activity-item">
             <span class="activity-label">프로젝트</span>
-            <p class="activity-desc">팀 단위로 이론을 실전에 적용하며, 최종 발표로 마무리합니다.</p>
+            <p></p>
+            <p class="activity-desc">학회원끼리 팀을 이루어 프로젝트를 진행하고, 마지막 날 최종 발표를 합니다.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Schedule -->
-    <section class="section" id="schedule" style="background: var(--color-bg-muted);">
-      <div class="container">
-        <h2 class="section-title">학회 일정</h2>
-        <div class="schedule-timeline">
-          <div class="schedule-step">
-            <p class="schedule-step-title">1학기 개강</p>
-            <p class="schedule-step-date">3월 첫째 주</p>
-          </div>
-          <span class="schedule-arrow">→</span>
-          <div class="schedule-step">
-            <p class="schedule-step-title">중간 발표</p>
-            <p class="schedule-step-date">6월</p>
-          </div>
-          <span class="schedule-arrow">→</span>
-          <div class="schedule-step">
-            <p class="schedule-step-title">2학기 개강</p>
-            <p class="schedule-step-date">9월 첫째 주</p>
-          </div>
-          <span class="schedule-arrow">→</span>
-          <div class="schedule-step">
-            <p class="schedule-step-title">최종 발표</p>
-            <p class="schedule-step-date">12월</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
     <section class="section" id="faq">
       <div class="container">
         <h2 class="section-title">FAQ</h2>
-        <div class="faq-list">
-          <div class="faq-item open">
-            <button class="faq-question">CRESOL은 어떤 학회인가요?</button>
-            <div class="faq-answer">
-              <p>CRESOL은 서비스 디자인을 배우고 실천하는 대학생 학회입니다. 디자인 씽킹 방법론을 기반으로 문제를 발견하고 해결하는 역량을 키웁니다.</p>
+    
+        <!-- FAQ 탭 메뉴 -->
+        <div class="faq-tabs" role="tablist">
+          <button class="faq-tab active" data-tab="apply" role="tab">지원</button>
+          <button class="faq-tab" data-tab="activity" role="tab">활동</button>
+          <button class="faq-tab" data-tab="graduate" role="tab">수료</button>
+        </div>
+    
+        <!-- 1. 지원 패널 -->
+        <div class="faq-panel active" data-panel="apply">
+          <div class="faq-list">
+            
+            <div class="faq-item">
+              <button class="faq-question">서비스 디자인을 전혀 몰라도 지원할 수 있나요?</button>
+              <div class="faq-answer">
+                <p>네, 열정만 있다면 전공과 경험에 관계없이 지원할 수 있어요.</p>
+                <p>학술 세션에서 기초 개념부터 단계별로 함께 배워나갑니다.</p>
+              </div>
             </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">전공이 디자인이 아니어도 지원할 수 있나요?</button>
-            <div class="faq-answer">
-              <p>네, 전공 무관하게 지원 가능합니다. 서비스 디자인에 관심이 있고 함께 성장하고 싶은 분이라면 누구나 환영합니다.</p>
+    
+            <div class="faq-item">
+              <button class="faq-question">나이 제한이 따로 있나요?</button>
+              <div class="faq-answer">
+                <p>아니요, 서울에서 활동 가능한 4년제 대학 재학생 및 휴학생이라면 환영합니다.</p>
+              </div>
             </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">활동 빈도는 어떻게 되나요?</button>
-            <div class="faq-answer">
-              <p>매주 금요일 19시에 정규 세션이 진행됩니다. 프로젝트 기간에는 추가 미팅이 있을 수 있습니다.</p>
+    
+            <div class="faq-item">
+              <button class="faq-question">포트폴리오 제출이 필수인가요?</button>
+              <div class="faq-answer">
+                <p>선택 사항입니다. 링크 첨부나 메일 발송을 통해 제출해 주시길 바랍니다.</p>
+              </div>
             </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">모집은 언제 하나요?</button>
-            <div class="faq-answer">
-              <p>매년 2월과 8월에 신입 학회원을 모집합니다. 자세한 일정은 모집 안내 페이지에서 확인하세요.</p>
+    
+            <div class="faq-item">
+              <button class="faq-question">면접은 어떻게 진행되나요?</button>
+              <div class="faq-answer">
+                <p>온라인 화상면접으로 진행됩니다. 지원 시 참여 가능한 일시를 선택해 주세요.</p>
+              </div>
             </div>
+    
           </div>
         </div>
-
+    
+        <!-- 2. 활동 패널 -->
+        <div class="faq-panel" data-panel="activity">
+          <div class="faq-list">
+    
+            <div class="faq-item">
+              <button class="faq-question">활동은 어떤 방식으로, 얼마나 자주 진행되나요?</button>
+              <div class="faq-answer">
+                <p>정규 세션은 매주 1회 이루어지며, 교육 후 팀별 프로젝트 실습을 진행해요.</p>
+                <p>한 학기 동안 하나의 프로젝트를 팀과 함께 완성합니다.</p>
+              </div>
+            </div>
+    
+            <div class="faq-item">
+              <button class="faq-question">프로젝트는 어떻게 진행되나요?</button>
+              <div class="faq-answer">
+                <p>팀별로 해당 기수 주제에 맞춘 팀별 주제를 선정하고, 리서치부터 서비스 기획까지 직접 수행해요.</p>
+                <p>최종 발표에서는 교수님 및 현직 전문가의 피드백을 받을 수 있습니다.</p>
+              </div>
+            </div>
+    
+            <div class="faq-item">
+              <button class="faq-question">대면 세션 시 장소는 어디인가요?</button>
+              <div class="faq-answer">
+                <p>서울 내 공유 오피스 혹은 성신여대 스마트혁신 창업센터에서 진행됩니다.</p>
+              </div>
+            </div>
+    
+            <div class="faq-item">
+              <button class="faq-question">대면/비대면 세션 기준은 어떻게 되나요?</button>
+              <div class="faq-answer">
+                <p>보통 격주로 진행되며, 상세 예상 일정은 모집안내 페이지를 확인해주시길 바랍니다.</p>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+    
+        <!-- 3. 수료 패널 -->
+        <div class="faq-panel" data-panel="graduate">
+          <div class="faq-list">
+    
+            <div class="faq-item">
+              <button class="faq-question">수료 후에도 활동을 이어갈 수 있나요?</button>
+              <div class="faq-answer">
+                <p>성실히 수료한 학회원은 OB로 활동할 수 있어요.</p>
+                <p>특강, 네트워킹 등 크리솔 커뮤니티로 이어집니다.</p>
+              </div>
+            </div>
+    
+            <div class="faq-item">
+              <button class="faq-question">활동 기간이 1년으로 나와 있는데, 두 기수 꼭 연속으로 활동해야하나요?</button>
+              <div class="faq-answer">
+                <p>아니요, 한 학기 활동 후 휴회 할 수 있습니다. 단, 수료증은 두 기수 모두 활동해야만 받을 수 있습니다.</p>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+    
+        <!-- 문의 버튼 영역 -->
         <div class="contact-buttons">
-          <a href="https://instagram.com" class="btn-contact" target="_blank" rel="noopener">
-            <img src="images/instargram_logo.jpeg" alt="">
-            인스타그램으로 문의
+          <a href="https://www.instagram.com/cresol_/" class="btn-contact" target="_blank" rel="noopener">
+            인스타그램 바로가기 <img src="images/instargram_logo2.png" alt="">
           </a>
-          <a href="mailto:cresol.official@gmail.com" class="btn-contact">
-            메일로 문의
+          <a href="mailto:cresolops@gmail.com" class="btn-contact">
+            메일 문의 <img src="images/mail_logo2.png" alt="">
           </a>
         </div>
+    
       </div>
     </section>
 
     <!-- CTA -->
     <section class="cta-section">
+      <div class="cta-glow"></div>
       <div class="container">
-        <a href="recruitment.html#apply" class="btn-cta-large">지원하기</a>
+        <a href="apply.html" class="btn-cta-large">지원하기</a>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-logo">
         <img src="images/cresol_Framelogo.png" alt="CRESOL">
       </div>
       <div class="footer-sns">
-        <a href="https://cafe.naver.com/cresol" target="_blank" rel="noopener" aria-label="네이버 카페">
-          <img src="images/navercafe_logo.png" alt="네이버 카페">
+        <a href="mailto:cresolops@gmail.com" aria-label="이메일 문의">
+          <img src="images/mail_logo.png" alt="메일">
         </a>
         <a href="https://www.instagram.com/cresol_/" target="_blank" rel="noopener" aria-label="인스타그램">
           <img src="images/instargram_logo.png" alt="인스타그램">
+        </a>
+        <a href="https://cafe.naver.com/cresol" target="_blank" rel="noopener" aria-label="네이버 카페">
+          <img src="images/navercafe_logo.png" alt="네이버 카페">
         </a>
       </div>
     </div>

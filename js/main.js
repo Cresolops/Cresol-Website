@@ -24,22 +24,53 @@ function initMobileNav() {
   });
 }
 
-function initFaq() {
-  document.querySelectorAll(".faq-question").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = btn.closest(".faq-item");
+document.addEventListener("DOMContentLoaded", function () {
+  // 1. FAQ 탭 전환 (지원 / 활동 / 수료)
+  const tabs = document.querySelectorAll(".faq-tab");
+  const panels = document.querySelectorAll(".faq-panel");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const targetTab = tab.getAttribute("data-tab");
+
+      tabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      panels.forEach((panel) => {
+        if (panel.getAttribute("data-panel") === targetTab) {
+          panel.classList.add("active");
+        } else {
+          panel.classList.remove("active");
+        }
+      });
+    });
+  });
+
+  // 2. FAQ 질문 클릭 시 답변 열기/닫기 (아코디언)
+  const questions = document.querySelectorAll(".faq-question");
+
+  questions.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const item = this.closest(".faq-item");
+      
+      // 현재 클릭한 항목이 열려있는지 확인
       const isOpen = item.classList.contains("open");
 
-      item.closest(".faq-list")
-        ?.querySelectorAll(".faq-item")
-        .forEach((el) => el.classList.remove("open"));
+      // 동일한 탭 안에 있는 다른 질문들을 모두 닫음
+      const parentList = item.closest(".faq-list");
+      if (parentList) {
+        parentList.querySelectorAll(".faq-item").forEach((el) => {
+          el.classList.remove("open");
+        });
+      }
 
+      // 클릭한 질문만 열기 (이미 열려있었다면 닫힘)
       if (!isOpen) {
         item.classList.add("open");
       }
     });
   });
-}
+});
 
 const PROJECTS = [
   { id: 1, cohort: 16, title: "프로젝트명", desc: "설명을 적어두며 개별 프로젝트 페이지로 이동합니다. 최대 2줄로" },
@@ -144,4 +175,95 @@ function initProjectPage() {
   }
 
   render();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initVisionCarousel();
+});
+
+function initVisionCarousel() {
+  const container = document.querySelector(".value-carousel");
+  if (!container) return;
+
+  let cards = Array.from(container.querySelectorAll(".value-card"));
+  let timer = null;
+
+  // 1. 카드의 위치와 active 상태 갱신 함수
+  function updateCarousel() {
+    // 768px 이하 모바일 화면일 때는 캐러셀 루프 동작 안 함
+    if (window.innerWidth <= 768) {
+      cards.forEach((card) => card.classList.remove("active"));
+      return;
+    }
+
+    // 배열 순서대로 컨테이너에 다시 추가하여 DOM 순서 변경
+    cards.forEach((card, index) => {
+      container.appendChild(card);
+      
+      // 가운데(index 1) 카드에만 active 부여
+      if (index === 1) {
+        card.classList.add("active");
+      } else {
+        card.classList.remove("active");
+      }
+    });
+  }
+
+  // 2. 다음 카드로 회전 (루프)
+  function nextSlide() {
+    if (window.innerWidth <= 768) return;
+    // 맨 앞 카드를 꺼내 맨 뒤로 보냄
+    const firstCard = cards.shift();
+    cards.push(firstCard);
+    updateCarousel();
+  }
+
+  // 3. 이전 카드로 회전
+  function prevSlide() {
+    if (window.innerWidth <= 768) return;
+    // 맨 뒤 카드를 꺼내 맨 앞으로 보냄
+    const lastCard = cards.pop();
+    cards.unshift(lastCard);
+    updateCarousel();
+  }
+
+  // 4. 8초 주기 타이머 시작
+  function startAutoPlay() {
+    stopAutoPlay();
+    timer = setInterval(nextSlide, 8000); // 8000ms = 8초
+  }
+
+  function stopAutoPlay() {
+    if (timer) clearInterval(timer);
+  }
+
+  // 5. 클릭 시 강제 전환 기능
+  container.addEventListener("click", (e) => {
+    if (window.innerWidth <= 768) return;
+
+    const clickedCard = e.target.closest(".value-card");
+    if (!clickedCard) return;
+
+    const clickedIndex = cards.indexOf(clickedCard);
+
+    // 왼쪽(0번) 카드를 누르면 이전 장으로
+    if (clickedIndex === 0) {
+      prevSlide();
+      startAutoPlay(); // 클릭 후 8초 타이머 리셋
+    } 
+    // 오른쪽(2번) 카드를 누르면 다음 장으로
+    else if (clickedIndex === 2) {
+      nextSlide();
+      startAutoPlay(); // 클릭 후 8초 타이머 리셋
+    }
+  });
+
+  // 초기화 실행
+  updateCarousel();
+  startAutoPlay();
+
+  // 창 크기 변경 대응
+  window.addEventListener("resize", () => {
+    updateCarousel();
+  });
 }
