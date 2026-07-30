@@ -93,10 +93,20 @@ button {
   margin-bottom: 28px;
 }
 
+/* 문단 기본 스타일 및 문단 간 여백 */
 .section-subtitle {
   font-size: 0.95rem;
   color: var(--color-text-muted);
   line-height: 1.7;
+  margin-bottom: 1.25rem; /* 문단 사이 공간 추가 (원하는 크기로 조절 가능) */
+}
+
+/* 마지막 온라인 면접 안내 문구 스타일 */
+.section-notice {
+  font-size: 0.85rem;     /* 기존 0.95rem보다 작게 설정 */
+  color: #9980FF;          /* 지정한 보라색 설정 */
+  line-height: 1.7;
+  margin-top: 1.5rem;      /* 위 문단과의 간격 */
 }
 
 /* ===== Header ===== */
@@ -1128,284 +1138,308 @@ button {
   }
 }
 
-/* ===== Apply Form ===== */
-.apply-form-section {
-  padding-top: 0;
-  padding-bottom: 64px;
+/* ===== Base & Theme Variables ===== */
+:root {
+  --color-bg-main: #0c0812;
+  --color-bg-input: #1a1622;
+  --color-bg-light: #251f30;
+  --color-purple: #6c23ff;
+  --color-text: #ffffff;
+  --color-text-muted: #8b8599;
+  --color-border: #2e283b;
+  --radius: 8px;
 }
 
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text);
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* ===== Form Structure ===== */
 .apply-form {
-  max-width: 760px;
-  margin-inline: auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .form-fieldset {
   border: none;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  padding: 0;
 }
 
-.form-legend {
-  font-size: 1.15rem;
+.section-title {
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid var(--color-purple);
-  width: 100%;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
 }
 
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 20px;
 }
 
 .form-label {
   display: block;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  line-height: 1.4;
 }
 
-.required {
-  color: #ff6b6b;
+.char-limit {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-left: 8px;
 }
 
-.form-input,
-.form-textarea,
-.form-select {
+/* ===== Inputs & Textareas ===== */
+.form-input, .form-select, .form-textarea {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid var(--color-border);
+  padding: 14px 16px;
+  background-color: var(--color-bg-input);
+  border: 1px solid var(--color-bg-input);
   border-radius: var(--radius);
-  font-family: inherit;
-  font-size: 0.95rem;
-  background: var(--color-bg-input);
   color: var(--color-text);
-  transition: border-color 0.2s;
+  font-size: 0.95rem;
+  transition: border 0.2s;
+  box-sizing: border-box;
 }
 
-.form-input:focus,
-.form-textarea:focus,
-.form-select:focus {
+.form-input:focus, .form-select:focus, .form-textarea:focus {
   outline: none;
   border-color: var(--color-purple);
 }
 
-.form-textarea {
-  resize: vertical;
-  min-height: 140px;
-  line-height: 1.65;
+.form-input::placeholder, .form-textarea::placeholder {
+  color: var(--color-text-muted);
 }
 
-.form-checkbox-label,
-.form-radio-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.875rem;
+.form-textarea {
+  resize: none;
+  min-height: 120px;
+}
+.form-textarea.large {
+  min-height: 200px;
+}
+
+/* ===== Custom Checkbox & Radio ===== */
+.custom-checkbox, .custom-radio {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
   cursor: pointer;
+  font-size: 0.95rem;
+  user-select: none;
   margin-bottom: 8px;
 }
 
-.form-checkbox-label input,
-.form-radio-label input {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  flex-shrink: 0;
-  accent-color: var(--color-purple);
+.custom-checkbox input, .custom-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.form-radio-group {
+.checkmark, .radiomark {
+  height: 20px;
+  width: 20px;
+  background-color: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  margin-right: 10px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-help {
-  margin-top: 10px;
-  font-size: 0.8rem;
+.checkmark.square {
+  border-radius: 4px;
+}
+
+.custom-checkbox input:checked ~ .checkmark, 
+.custom-radio input:checked ~ .radiomark {
+  background-color: var(--color-purple);
+  border-color: var(--color-purple);
+}
+
+.custom-checkbox input:checked ~ .checkmark::after {
+  content: "✔";
+  color: white;
+  font-size: 12px;
+}
+.custom-radio input:checked ~ .radiomark::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}
+
+/* ===== Specific Components ===== */
+.privacy-box {
+  background-color: var(--color-bg-input);
+  padding: 16px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
   color: var(--color-text-muted);
   line-height: 1.6;
+  margin-top: 12px;
 }
 
-.privacy-box {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 16px;
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  line-height: 1.65;
-  max-height: 160px;
-  overflow-y: auto;
-  margin-bottom: 12px;
-}
-
-.photo-upload {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
-
-.photo-preview {
-  width: 100px;
-  height: 130px;
-  background: var(--color-bg-input);
-  border: 1px dashed var(--color-border);
+.photo-upload-box {
+  width: 120px;
+  height: 160px;
+  background-color: var(--color-bg-input);
   border-radius: var(--radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.photo-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.dob-row {
-  display: flex;
-  gap: 8px;
-}
-
-.dob-row select {
-  flex: 1;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.schedule-grid {
-  overflow-x: auto;
-  margin-top: 12px;
-}
-
-.schedule-grid table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8rem;
-  min-width: 400px;
-}
-
-.schedule-grid th,
-.schedule-grid td {
-  border: 1px solid var(--color-border);
-  padding: 8px;
   text-align: center;
-}
-
-.schedule-grid th {
-  background: var(--color-bg-card);
-  font-weight: 600;
-}
-
-.autosave-status {
   font-size: 0.85rem;
   color: var(--color-text-muted);
-  min-height: 1.4em;
-  margin-top: 8px;
-  opacity: 0;
-  transition: opacity 0.3s;
+  cursor: pointer;
+  border: 1px dashed var(--color-border);
 }
 
-.autosave-status.visible {
-  opacity: 1;
-}
-
-.autosave-status.saved,
-.autosave-status.restored {
-  color: #6ee7a0;
-}
-
-.autosave-status.error {
-  color: #ff6b6b;
-}
-
-.form-message {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  white-space: pre-line;
-  margin-bottom: 16px;
-}
-
-.form-message.error {
-  color: #ff6b6b;
-  padding: 12px 16px;
-  background: rgba(255, 107, 107, 0.1);
-  border-radius: var(--radius);
-}
-
-.form-message.success {
-  color: #6ee7a0;
-  padding: 12px 16px;
-  background: rgba(110, 231, 160, 0.1);
-  border-radius: var(--radius);
-}
-
-.form-actions {
+.dob-group {
   display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.radio-group {
+  display: flex;
+  gap: 24px;
+}
+
+/* Activity Table */
+.activity-table {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding-top: 8px;
 }
-
-.btn-form-primary,
-.btn-form-secondary {
-  padding: 14px 48px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  border-radius: var(--radius-pill);
-  transition: background 0.2s, opacity 0.2s;
+.activity-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 12px;
 }
-
-.btn-form-primary {
-  background: var(--color-purple);
-  color: #fff;
-}
-
-.btn-form-primary:hover:not(:disabled) {
-  background: var(--color-purple-hover);
-}
-
-.btn-form-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.btn-form-secondary {
-  background: var(--color-bg-card);
+.btn-add {
+  background-color: var(--color-bg-light);
   color: var(--color-text);
+  border: none;
+  padding: 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btn-add:hover {
+  background-color: var(--color-border);
+}
+
+/* Skills */
+.skills-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+.skill-other {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.small-input {
+  width: 120px;
+  padding: 8px 12px;
+}
+
+/* Interview Table */
+.interview-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-bg-main);
+  border-radius: var(--radius);
+  overflow: hidden;
   border: 1px solid var(--color-border);
 }
-
-.btn-form-secondary:hover:not(:disabled) {
-  border-color: var(--color-purple);
-}
-
-.apply-intro {
-  margin-bottom: 32px;
+.interview-table th, .interview-table td {
+  border: 1px solid var(--color-border);
+  padding: 16px;
+  text-align: center;
   font-size: 0.9rem;
-  color: var(--color-text-muted);
-  line-height: 1.7;
+}
+.interview-table th {
+  background-color: var(--color-bg-input);
+}
+.custom-checkbox.center {
+  margin: 0;
+  justify-content: center;
+}
+.custom-checkbox.center .checkmark {
+  margin-right: 0;
 }
 
-.apply-intro a {
-  color: var(--color-purple);
-  text-decoration: underline;
+/* Portfolio */
+.portfolio-inputs {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.portfolio-mail {
+  font-size: 1rem;
+}
+.portfolio-link-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg-input);
+  border-radius: var(--radius);
+  padding-left: 16px;
+}
+.portfolio-link-wrapper span {
+  font-size: 1.2rem;
+}
+.portfolio-link-wrapper .form-input {
+  border: none;
+  background: transparent;
+}
+
+/* Submit Button */
+.form-actions.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.btn-submit {
+  background-color: var(--color-purple);
+  color: white;
+  border: none;
+  padding: 18px 0;
+  width: 100%;
+  max-width: 320px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-submit:hover {
+  opacity: 0.9;
 }
 
 /* ===== Complete Page ===== */

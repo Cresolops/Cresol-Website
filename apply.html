@@ -28,116 +28,227 @@
   <main>
     <section class="page-header">
       <div class="container">
-        <h1 class="page-title">CRESOL 지원서</h1>
-        <p class="section-subtitle">
-          아래 양식을 작성하여 제출해 주세요. 작성 중인 내용은 브라우저에 자동 임시저장됩니다.
-        </p>
+        <h1 class="page-title">CRESOL 16기 지원서</h1>
+
+        <div class="subtitle-group">
+          <p class="section-subtitle">
+            Cresol과 함께 열심히 학회를 진행할 학회원을 뽑기 위한 지원서이니 성실히 작성해 주시길 바랍니다.<br>
+            또한 정해진 글자 수는 꼭 준수해주시기 바랍니다.
+          </p>
+          
+          <p class="section-subtitle">
+            서류 합격자는 8월 21일 개별적으로 연락드린 후 8월 22일23일 면접을 진행할 예정입니다.<br>
+            OT(8월 28일 수요일)는 필참입니다.
+          </p>
+          
+          <p class="section-notice">
+            ※면접은 온라인 화상 면접으로 진행됩니다.
+          </p>
+        </div>
+
         <p id="autosave-status" class="autosave-status" aria-live="polite"></p>
       </div>
     </section>
 
-    <section class="section apply-form-section">
-      <div class="container">
-        <form id="apply-form" class="apply-form" novalidate>
-
-          <fieldset class="form-fieldset">
-            <legend class="form-legend">기본 정보</legend>
-
-            <div class="form-group">
-              <label for="name" class="form-label">이름 <span class="required">*</span></label>
-              <input type="text" id="name" name="name" class="form-input" placeholder="홍길동" autocomplete="name" required>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="email" class="form-label">이메일 <span class="required">*</span></label>
-                <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" autocomplete="email" required>
-              </div>
-              <div class="form-group">
-                <label for="phone" class="form-label">전화번호 <span class="required">*</span></label>
-                <input type="tel" id="phone" name="phone" class="form-input" placeholder="010-1234-5678" autocomplete="tel" required>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="university" class="form-label">학교 <span class="required">*</span></label>
-                <input type="text" id="university" name="university" class="form-input" placeholder="OO대학교" required>
-              </div>
-              <div class="form-group">
-                <label for="major" class="form-label">학과 <span class="required">*</span></label>
-                <input type="text" id="major" name="major" class="form-input" placeholder="OO학과" required>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="grade" class="form-label">학년 <span class="required">*</span></label>
-                <select id="grade" name="grade" class="form-input" required>
-                  <option value="">선택해 주세요</option>
-                  <option value="1학년">1학년</option>
-                  <option value="2학년">2학년</option>
-                  <option value="3학년">3학년</option>
-                  <option value="4학년">4학년</option>
-                  <option value="휴학생">휴학생</option>
-                  <option value="졸업생">졸업생</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="applyType" class="form-label">지원 구분 <span class="required">*</span></label>
-                <select id="applyType" name="applyType" class="form-input" required>
-                  <option value="">선택해 주세요</option>
-                  <option value="학회원">학회원</option>
-                  <option value="운영진">운영진</option>
-                </select>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="form-fieldset">
-            <legend class="form-legend">지원 내용</legend>
-
-            <div class="form-group">
-              <label for="motivation" class="form-label">지원동기 <span class="required">*</span></label>
-              <textarea id="motivation" name="motivation" class="form-textarea" rows="6"
-                placeholder="CRESOL에 지원하게 된 동기와 함께하고 싶은 활동을 작성해 주세요." required></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="experience" class="form-label">활동 및 프로젝트 경험</label>
-              <textarea id="experience" name="experience" class="form-textarea" rows="5"
-                placeholder="관련 활동, 프로젝트, 동아리 경험 등을 자유롭게 작성해 주세요. (선택)"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="portfolio" class="form-label">포트폴리오 URL</label>
-              <input type="url" id="portfolio" name="portfolio" class="form-input"
-                placeholder="https:// (선택)">
-            </div>
-          </fieldset>
-
-          <fieldset class="form-fieldset">
-            <legend class="form-legend">동의</legend>
-            <label class="form-checkbox-label">
-              <input type="checkbox" id="privacyAgree" name="privacyAgree" required>
-              <span>개인정보 수집 및 이용에 동의합니다. <span class="required">*</span></span>
-            </label>
-            <p class="form-help">
-              수집 항목: 이름, 이메일, 전화번호, 학교, 학과, 학년, 지원 내용<br>
-              이용 목적: CRESOL 학회원 모집 및 선발<br>
-              보유 기간: 모집 종료 후 1년
-            </p>
-          </fieldset>
-
-          <p id="form-message" class="form-message" role="alert"></p>
-
-          <div class="form-actions">
-            <button type="button" id="clear-draft-btn" class="btn-form-secondary">임시저장 비우기</button>
-            <button type="submit" id="submit-btn" class="btn-form-primary">최종 제출</button>
+    <form id="apply-form" class="apply-form" novalidate>
+  
+      <!-- 1. 기본 정보 -->
+      <fieldset class="form-fieldset">
+        <h2 class="section-title">기본 정보</h2>
+    
+        <div class="form-group">
+          <label class="form-label">개인정보 활용 동의</label>
+          <label class="custom-checkbox">
+            <input type="checkbox" id="privacyAgree" name="privacyAgree" required>
+            <span class="checkmark"></span>
+            동의 합니다.
+          </label>
+          <div class="privacy-box">
+            Cresol 학회 구성원으로서의 적합성과 열정을 알아보고자 아래 내용의 지원서를 받고 있습니다.<br>
+            본 지원서는 여러분의 열정을 확인하고자 하는 목적일 뿐이며, 개인 정보는 본 목적 이외의 다른 목적으로 사용되지 않음을 밝힙니다.
           </div>
-        </form>
+        </div>
+    
+        <div class="form-group">
+          <label class="form-label">증명사진</label>
+          <div class="photo-upload-box" onclick="document.getElementById('photoInput').click()">
+            <span>+<br>증명사진 첨부</span>
+            <input type="file" id="photoInput" accept="image/*" style="display: none;">
+          </div>
+        </div>
+    
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">이름</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="김이솔">
+          </div>
+          <div class="form-group">
+            <label class="form-label">생년월일</label>
+            <div class="dob-group">
+              <select name="birthYear" class="form-select"><option>2000년</option></select>
+              <select name="birthMonth" class="form-select"><option>1월</option></select>
+              <select name="birthDay" class="form-select"><option>1일</option></select>
+              <div class="icon-calendar"></div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="university">학교</label>
+            <input type="text" id="university" name="university" class="form-input" placeholder="성신여자대학교">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="major">학과/학년</label>
+            <input type="text" id="major" name="major" class="form-input" placeholder="시각디자인학과/n학년">
+          </div>
+        </div>
+    
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="phone">핸드폰</label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="010-XXXX-XXXX">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="address">주소</label>
+            <input type="text" id="address" name="address" class="form-input" placeholder="서울특별시 마포구 동교동">
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label class="form-label">인지 경로</label>
+          <div class="radio-group">
+            <label class="custom-radio"><input type="radio" name="route" value="SNS" checked><span class="radiomark"></span>SNS</label>
+            <label class="custom-radio"><input type="radio" name="route" value="지인"><span class="radiomark"></span>지인</label>
+            <label class="custom-radio"><input type="radio" name="route" value="학교 내 커뮤니티"><span class="radiomark"></span>학교 내 커뮤니티</label>
+            <label class="custom-radio"><input type="radio" name="route" value="포털사이트/카페"><span class="radiomark"></span>포털사이트/카페</label>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label class="form-label">교내/대외활동 경험</label>
+          <div class="activity-table">
+            <div class="activity-row">
+              <input type="text" class="form-input date-input" placeholder="260323 - 260821">
+              <input type="text" class="form-input" placeholder="서비스 디자인 연합동아리 크리솔 15기">
+              <input type="text" class="form-input" placeholder="크리솔">
+            </div>
+            <div class="activity-row">
+              <input type="text" class="form-input date-input" placeholder="260323 - 260821">
+              <input type="text" class="form-input" placeholder="서비스 디자인 연합동아리 크리솔 15기">
+              <input type="text" class="form-input" placeholder="크리솔">
+            </div>
+            <div class="activity-row">
+              <input type="text" class="form-input date-input empty" placeholder="기간을 입력해 주세요.">
+              <input type="text" class="form-input empty" placeholder="활동 내용을 입력해 주세요.">
+              <input type="text" class="form-input empty" placeholder="활동 기관을 입력해 주세요.">
+            </div>
+            <button type="button" class="btn-add">추가 +</button>
+          </div>
+        </div>
+      </fieldset>
+    
+      <!-- 2. 지원서 질문 -->
+      <fieldset class="form-fieldset">
+        <h2 class="section-title">지원서 질문</h2>
+        <p class="section-desc">※정해진 글자 수 초과 시 감점 있습니다.</p>
+    
+        <div class="form-group">
+          <label class="form-label">1. Cresol에 지원하게 된 동기와 이 활동을 통해 배우고 싶은 점을 기술해주세요. <span class="char-limit">400자 이내</span></label>
+          <textarea name="q1" class="form-textarea" placeholder="400자 이내로 작성해 주세요."></textarea>
+        </div>
+    
+        <div class="form-group">
+          <label class="form-label">2. 서비스디자인의 학술 분야에 대한 역량을 자신의 경험을 바탕으로 적어주세요. 없다면, 개인 혹은 교내 외 프로젝트에서 키운 역량을 경험을 바탕으로 적어주세요. <span class="char-limit">500자 이내</span></label>
+          <textarea name="q2" class="form-textarea large" placeholder="500자 이내로 작성해 주세요."></textarea>
+        </div>
+    
+        <div class="form-group">
+          <label class="form-label">3. 서비스디자인을 적용해보고 싶었던 분야가 있는지, 혹은 프로젝트 또는 생활 속에서 해결하고 싶었던 문제점이 있다면 이를 서비스 디자인적 측면에서 어떻게 해결하고 싶은지 기술해주세요. <span class="char-limit">500자 이내</span></label>
+          <textarea name="q3" class="form-textarea large" placeholder="500자 이내로 작성해 주세요."></textarea>
+        </div>
+    
+        <div class="form-group">
+          <label class="form-label">4. 공동체 안에서 갈등상황이 생겼을 때 자신만의 해결방안을 기술해주세요. <br>혹은 그 상황에서 본인의 문제 점이 있었다면 어떻게 해결하고 극복하고자 했는지 적어주세요. <span class="char-limit">500자 이내</span></label>
+          <textarea name="q4" class="form-textarea large" placeholder="500자 이내로 작성해 주세요."></textarea>
+        </div>
+      </fieldset>
+    
+      <!-- 3. 기타 -->
+      <fieldset class="form-fieldset">
+        <h2 class="section-title">기타</h2>
+    
+        <div class="form-group">
+          <label class="form-label">프로그램 활용 능력</label>
+          <p class="section-desc">※ 조 배치를 위한 조사로, 합격 여부와 무관합니다.<br>※ 중복 선택 가능</p>
+          <div class="skills-group">
+            <label class="custom-checkbox"><input type="checkbox" name="skill" value="포토샵"><span class="checkmark"></span>포토샵</label>
+            <label class="custom-checkbox"><input type="checkbox" name="skill" value="일러스트레이터" checked><span class="checkmark"></span>일러스트레이터</label>
+            <label class="custom-checkbox"><input type="checkbox" name="skill" value="어도비 XD"><span class="checkmark"></span>어도비 XD</label>
+            <label class="custom-checkbox"><input type="checkbox" name="skill" value="피그마"><span class="checkmark"></span>피그마</label>
+            <label class="custom-checkbox"><input type="checkbox" name="skill" value="노션"><span class="checkmark"></span>노션</label>
+            <label class="custom-checkbox"><input type="checkbox" name="skill" value="블렌더"><span class="checkmark"></span>블렌더</label>
+            <label class="custom-checkbox"><input type="checkbox" name="skill" value="C4D"><span class="checkmark"></span>C4D</label>
+            <div class="skill-other">
+              <label class="custom-checkbox"><input type="checkbox" name="skill" value="기타"><span class="checkmark"></span>기타</label>
+              <input type="text" class="form-input small-input" placeholder="기타">
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label class="form-label">참여 가능한 면접 날짜</label>
+          <p class="section-desc">※ 정해진 면접 시간은 변경할 수 없으니, 신중하게 체크해 주시기 바랍니다.<br>※ 중복 선택 가능</p>
+          <table class="interview-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>09:00~10:00</th>
+                <th>10:00~11:00</th>
+                <th>11:00~12:00</th>
+                <th>13:00~14:00</th>
+                <th>14:00~15:00</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>22일 목</td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="22일 09:00~10:00"><span class="checkmark square"></span></label></td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="22일 10:00~11:00"><span class="checkmark square"></span></label></td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="22일 11:00~12:00"><span class="checkmark square"></span></label></td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="22일 13:00~14:00"><span class="checkmark square"></span></label></td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="22일 14:00~15:00"><span class="checkmark square"></span></label></td>
+              </tr>
+              <tr>
+                <td>23일 금</td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 09:00~10:00"><span class="checkmark square"></span></label></td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 10:00~11:00"><span class="checkmark square"></span></label></td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 11:00~12:00"><span class="checkmark square"></span></label></td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 13:00~14:00"><span class="checkmark square"></span></label></td>
+                <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 14:00~15:00"><span class="checkmark square"></span></label></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <div class="form-group portfolio-group">
+          <label class="form-label">포트폴리오 (선택사항)</label>
+          <p class="section-desc">※ 아래의 메일 주소로 발송해 주시거나 링크를 첨부해 주시기 바랍니다.</p>
+          <div class="portfolio-inputs">
+            <div class="portfolio-mail">✉ cresol_@naver.com</div>
+            <!-- 기존 포트폴리오 input 태그에 name="portfolioLink" 추가 -->
+          <div class="portfolio-link-wrapper">
+            <span>🔗</span>
+            <input type="url" name="portfolioLink" class="form-input" placeholder="링크 첨부">
+          </div>
+          </div>
+        </div>
+      </fieldset>
+    
+      <div class="form-actions center">
+        <button type="submit" id="submit-btn" class="btn-submit">제출하기</button>
       </div>
-    </section>
+    </form>
   </main>
 
   <!-- Footer -->
