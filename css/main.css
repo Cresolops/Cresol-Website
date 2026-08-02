@@ -216,14 +216,20 @@ button {
   line-height: 1.75;
 }
 
-.hero-logo-center {
-  margin: 40px auto;
-  max-width: 280px;
+.cresol_motion {
+  /* margin-top: 10px; /* 텍스트와 영상 사이의 여백 */
+  width: 100%;
+  max-width: 900px; /* PC 화면에서 영상이 너무 거대해지는 것을 방지 */
+  margin-inline: auto; /* 컨테이너 중앙 정렬 */
+  border-radius: 16px; /* (선택) 영상 모서리를 둥글게 */
+  overflow: hidden; /* 둥근 모서리 밖으로 삐져나가는 영상 숨김 */
 }
 
-.hero-logo-center img {
+.cresol_motion video {
+  display: block; /* 하단 여백 버그 방지 */
   width: 100%;
-  margin-inline: auto;
+  height: auto;
+  object-fit: cover;
 }
 
 /* ===== Vision / Value Cards Carousel ===== */
@@ -395,6 +401,22 @@ button {
   margin: 0;
 }
 
+/* ===== 세부 활동 내용 다이어그램 모바일 크기 조정 (현재의 1.5배) ===== */
+@media (max-width: 768px) {
+  .scchedule_detail img {
+    /* 기존 0.7 스케일의 1.5배 크기인 1.05로 확대 */
+    transform: scale(1.05);
+    
+    /* 스케일 확대 시 이미지가 화면 밖으로 삐져나가는 것을 방지 */
+    max-width: 100%;
+    height: auto;
+    
+    /* (선택) transform 대신 너비 자체를 조절하고 싶다면 아래 주석을 풀고 사용하세요 */
+    /* transform: none; */
+    /* width: 100%; */
+  }
+}
+
 /* ===== 모바일 반응형 (768px 이하일 때 두번째 사진처럼 변경) ===== */
 @media (max-width: 768px) {
   .activity-item {
@@ -453,9 +475,7 @@ button {
 }
 
 /* ===== FAQ List & Item ===== */
-.faq-list {
-  border-top: 1px solid var(--color-border);
-}
+
 
 .faq-item {
   border-bottom: 1px solid var(--color-border);
@@ -548,6 +568,27 @@ button {
   width: 20px;
   height: 20px;
   object-fit: contain;
+}
+
+/* ===== FAQ 모바일 버전: 질문/답변 모두 보이기 ===== */
+@media (max-width: 768px) {
+  /* 답변 영역 항상 펼쳐두기 */
+  .faq-answer {
+    max-height: 1000px !important; /* 닫혀있던 높이 제한을 풀어줌 */
+    opacity: 1 !important; /* 텍스트가 항상 보이게 투명도 100% */
+    padding-top: 4px !important;
+    padding-bottom: 20px !important;
+  }
+
+  /* 더 이상 열고 닫지 않으므로 질문 우측의 '+' 또는 '-' 아이콘 숨김 */
+  .faq-question::after {
+    display: none !important;
+  }
+
+  /* 클릭이 불필요함을 알리기 위해 마우스 커서 상태를 기본으로 변경 */
+  .faq-question {
+    cursor: default !important;
+  }
 }
 
 /* ===== CTA ===== */
@@ -670,7 +711,7 @@ button {
 }
 
 .filter-dropdown li:last-child {
-  border-bottom: none;
+  border-bottom: none; 
 }
 
 /* 옵션 호버 및 선택 상태 효과 */
@@ -870,6 +911,36 @@ button {
   color: var(--color-purple);
 }
 
+/* ===== 프로젝트 상세 갤러리 모바일 환경(768px 이하) 세로 배치 ===== */
+@media (max-width: 768px) {
+  /* 가로 스크롤 속성을 해제 */
+  .detail-gallery-wrapper {
+    overflow-x: hidden !important; 
+    width: 100% !important;
+  }
+  
+  /* flex 방향을 가로(row)에서 세로(column)로 변경 */
+  .detail-gallery {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px; /* 세로로 배치된 이미지 사이의 간격 (원하는 대로 조절 가능) */
+    width: 100% !important;
+  }
+
+  /* 이미지가 모바일 화면 가로 너비에 꽉 차도록 비율 조정 */
+  .detail-gallery img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100%;
+    object-fit: cover; /* 이미지가 찌그러지지 않게 유지 */
+  }
+}
+
+.detail-desc {
+  white-space: pre-line; /* 데이터에 입력한 줄바꿈을 그대로 화면에 적용 */
+  line-height: 1.6;      /* 줄 간격을 넓혀서 읽기 편하게 함 */
+}
+
 /* ==========================================
    모집 일정 (Schedule Timeline)
    ========================================== */
@@ -1012,9 +1083,11 @@ button {
 .offline-badge-info {
   display: flex;
   align-items: center;
+  justify-content: flex-end; /* 💡 왼쪽 정렬을 오른쪽 정렬로 변경 */
   gap: 8px;
   font-size: 0.9rem;
   color: #a1a1aa;
+  margin-bottom: 20px;      /* 💡 하단 마진 추가 (원하는 수치로 조절 가능) */
 }
 
 .offline-dot {
@@ -1126,17 +1199,6 @@ button {
   }
 }
 
-/* 4. 모바일 (768px 이하): 1열 세로 배치 */
-@media (max-width: 768px) {
-  .week-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .week-card {
-    min-height: auto;
-  }
-}
 
 /* ===== Base & Theme Variables ===== */
 :root {
@@ -1172,7 +1234,6 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 24px;
-  border-bottom: 1px solid var(--color-border);
   padding-bottom: 16px;
 }
 
@@ -1719,3 +1780,15 @@ body {
       height: 260px;
     }
   }
+
+  /* 4. 모바일 (768px 이하): 1열 세로 배치 */
+@media (max-width: 768px) {
+  .week-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .week-card {
+    min-height: auto;
+  }
+}

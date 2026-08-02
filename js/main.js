@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryWrapper = document.querySelector(".detail-gallery-wrapper");
 
     if (titleEl) titleEl.textContent = project.title;
-    if (descEl) descEl.textContent = project.desc;
+    if (descEl) descEl.textContent = project.fulldesc || project.desc;
     if (cohortEl) cohortEl.textContent = `${project.cohort}기`;
     if (membersEl) membersEl.textContent = project.members || "팀원 정보 없음";
 
@@ -95,6 +95,9 @@ function initFaq() {
   const questions = document.querySelectorAll(".faq-question");
   questions.forEach((btn) => {
     btn.addEventListener("click", function () {
+      
+      // 💡 [추가된 부분] 모바일(768px 이하) 환경에서는 클릭(열고 닫기) 기능 무시
+      if (window.innerWidth <= 768) return;
       const item = this.closest(".faq-item");
       const isOpen = item.classList.contains("open");
 
