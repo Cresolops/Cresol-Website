@@ -1,5 +1,5 @@
 // ↓ 새로 배포한 구글 웹 앱 URL을 넣으세요!
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw79WySv_yBwF_T6Inn0ZGe6kexDCHvVaqJdN3xiHh28KVZuuOECFHN4mqTHN4MWFJzhg/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyDhHHndI_ATLh_dhQtGvm-bOetDuq4HeSZ4TzkbVQZX_huNuAg2qmCvIGvFiS8H0fp/exec";
 const STORAGE_KEY = "cresol_apply_draft";
 
 const form = document.getElementById("apply-form");
@@ -199,7 +199,6 @@ function validateForm(data) {
   if (!data.phone.trim()) return "핸드폰 번호를 입력해 주세요.";
   if (!data.address.trim()) return "주소를 입력해 주세요.";
   if (!data.route) return "인지 경로를 선택해 주세요.";
-  if (!data.activities.trim()) return "교내/대외활동 경험을 최소 1개 이상 입력해 주세요.";
   if (!data.q1.trim()) return "지원서 질문 1번을 작성해 주세요.";
   if (!data.q2.trim()) return "지원서 질문 2번을 작성해 주세요.";
   if (!data.q3.trim()) return "지원서 질문 3번을 작성해 주세요.";

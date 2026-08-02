@@ -1293,10 +1293,7 @@ body {
 
 .form-textarea {
   resize: none;
-  min-height: 120px;
-}
-.form-textarea.large {
-  min-height: 200px;
+  min-height: 170px;
 }
 
 /* ===== Custom Checkbox & Radio ===== */
