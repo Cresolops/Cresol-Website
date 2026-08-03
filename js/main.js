@@ -3,54 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initFaq();
   initProjectPage();
-
-  // 1. URL 주소에서 ?id= 파라미터 가져와 상세페이지 채우기
-  const urlParams = new URLSearchParams(window.location.search);
-  const projectId = urlParams.get("id");
-
-  if (document.querySelector(".detail-title") && typeof PROJECTS !== "undefined") {
-    const project = PROJECTS.find((p) => p.id === projectId);
-
-    if (!project) {
-      alert("존재하지 않는 프로젝트입니다.");
-      window.location.href = "project.html";
-      return;
-    }
-
-    // HTML 데이터 연결
-    const titleEl = document.querySelector(".detail-title");
-    const descEl = document.querySelector(".detail-desc");
-    const cohortEl = document.querySelector(".detail-cohort");
-    const membersEl = document.querySelector(".detail-members");
-    const galleryEl = document.getElementById("detail-gallery");
-    const galleryWrapper = document.querySelector(".detail-gallery-wrapper");
-
-    if (titleEl) titleEl.textContent = project.title;
-    if (descEl) descEl.textContent = project.fulldesc || project.desc;
-    if (cohortEl) cohortEl.textContent = `${project.cohort}기`;
-    if (membersEl) membersEl.textContent = project.members || "팀원 정보 없음";
-
-    // 이미지 출력
-    if (galleryEl && project.images && project.images.length > 0) {
-      galleryEl.innerHTML = project.images
-        .map((imgSrc) => `<img src="${imgSrc}" alt="${project.title} 이미지">`)
-        .join("");
-    }
-
-    // 마우스 휠 스크롤 시 가로(양옆)로 이동하는 로직
-    if (galleryWrapper) {
-      galleryWrapper.addEventListener("wheel", (e) => {
-        if (e.deltaY !== 0) {
-          e.preventDefault();
-          galleryWrapper.scrollLeft += e.deltaY * 2.5;
-        }
-      }, { passive: false });
-    }
-  }
-
   initVisionCarousel();
+  initEmailCopy(); // 💡 이메일 복사 모달 기능 추가
 });
 
+// 1. 모바일 네비게이션 제어
 function initMobileNav() {
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav");
@@ -71,6 +28,7 @@ function initMobileNav() {
   });
 }
 
+// 2. FAQ 아코디언 및 탭 제어
 function initFaq() {
   const tabs = document.querySelectorAll(".faq-tab");
   const panels = document.querySelectorAll(".faq-panel");
@@ -95,8 +53,6 @@ function initFaq() {
   const questions = document.querySelectorAll(".faq-question");
   questions.forEach((btn) => {
     btn.addEventListener("click", function () {
-      
-      // 💡 [추가된 부분] 모바일(768px 이하) 환경에서는 클릭(열고 닫기) 기능 무시
       if (window.innerWidth <= 768) return;
       const item = this.closest(".faq-item");
       const isOpen = item.classList.contains("open");
@@ -115,6 +71,7 @@ function initFaq() {
   });
 }
 
+// 3. 프로젝트 페이지 제어 및 상세페이지 데이터 바인딩
 const ITEMS_PER_PAGE = 12;
 
 function initProjectPage() {
@@ -126,6 +83,47 @@ function initProjectPage() {
   const selectedValue = filterBtn?.querySelector(".selected-value");
   const dropdown = document.getElementById("cohort-dropdown");
   const options = dropdown?.querySelectorAll("li");
+
+  // 상세 페이지 데이터 연결
+  const urlParams = new URLSearchParams(window.location.search);
+  const projectId = urlParams.get("id");
+
+  if (document.querySelector(".detail-title") && typeof PROJECTS !== "undefined") {
+    const project = PROJECTS.find((p) => p.id === projectId);
+
+    if (!project) {
+      alert("존재하지 않는 프로젝트입니다.");
+      window.location.href = "project.html";
+      return;
+    }
+
+    const titleEl = document.querySelector(".detail-title");
+    const descEl = document.querySelector(".detail-desc");
+    const cohortEl = document.querySelector(".detail-cohort");
+    const membersEl = document.querySelector(".detail-members");
+    const galleryEl = document.getElementById("detail-gallery");
+    const galleryWrapper = document.querySelector(".detail-gallery-wrapper");
+
+    if (titleEl) titleEl.textContent = project.title;
+    if (descEl) descEl.textContent = project.fulldesc || project.desc;
+    if (cohortEl) cohortEl.textContent = `${project.cohort}기`;
+    if (membersEl) membersEl.textContent = project.members || "팀원 정보 없음";
+
+    if (galleryEl && project.images && project.images.length > 0) {
+      galleryEl.innerHTML = project.images
+        .map((imgSrc) => `<img src="${imgSrc}" alt="${project.title} 이미지">`)
+        .join("");
+    }
+
+    if (galleryWrapper) {
+      galleryWrapper.addEventListener("wheel", (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          galleryWrapper.scrollLeft += e.deltaY * 2.5;
+        }
+      }, { passive: false });
+    }
+  }
 
   if (!grid || typeof PROJECTS === "undefined") return;
 
@@ -147,7 +145,6 @@ function initProjectPage() {
     });
   }
 
-  // 드롭다운 기수 선택 시 필터링 처리
   options?.forEach((option) => {
     option.addEventListener("click", () => {
       options.forEach((opt) => opt.classList.remove("selected"));
@@ -236,6 +233,7 @@ function initProjectPage() {
   render();
 }
 
+// 4. 비전 캐러셀 제어
 function initVisionCarousel() {
   const container = document.querySelector(".value-carousel");
   if (!container) return;
@@ -304,5 +302,45 @@ function initVisionCarousel() {
 
   window.addEventListener("resize", () => {
     updateCarousel();
+  });
+}
+
+// 5. 이메일 주소 클립보드 복사 & 커스텀 모달 알림창
+function initEmailCopy() {
+  const emailBtn = document.getElementById("email-copy-btn");
+  const alertModal = document.getElementById("custom-alert");
+  const closeBtn = document.getElementById("custom-alert-close");
+  const emailAddress = "cresol_@naver.com";
+
+  if (!emailBtn || !alertModal || !closeBtn) return;
+
+  // 메일 버튼 클릭 이벤트
+  emailBtn.addEventListener("click", () => {
+    // 1) 클립보드 복사
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(emailAddress);
+    } else {
+      const textarea = document.createElement("textarea");
+      textarea.value = emailAddress;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+
+    // 2) 커스텀 알림창 띄우기
+    alertModal.style.display = "flex";
+  });
+
+  // '확인' 버튼 클릭 시 모달 닫기
+  closeBtn.addEventListener("click", () => {
+    alertModal.style.display = "none";
+  });
+
+  // 모달 어두운 배경 영역 클릭 시 닫기
+  alertModal.addEventListener("click", (e) => {
+    if (e.target === alertModal) {
+      alertModal.style.display = "none";
+    }
   });
 }
