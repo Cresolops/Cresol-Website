@@ -9,6 +9,27 @@
   font-display: swap;
 }
 
+/* ===== Variables (중복 선언 병합) ===== */
+:root {
+  --color-bg: #050508;
+  --color-bg-main: #0c0812;
+  --color-bg-elevated: #12121a;
+  --color-bg-card: #1a1a24;
+  --color-bg-input: #1a1622;
+  --color-bg-light: #251f30;
+  --color-text: #ffffff;
+  --color-text-muted: #8b8599;
+  --color-border: #2e283b;
+  --color-purple: #6c23ff;
+  --color-purple-hover: #6200FF;
+  --color-purple-dim: rgba(123, 44, 255, 0.15);
+  --font-main: "AG";
+  --header-height: 64px;
+  --max-width: 1120px;
+  --radius: 8px;
+  --radius-pill: 999px;
+}
+
 /* ===== Reset & Global ===== */
 *,
 *::before,
@@ -18,32 +39,14 @@
   padding: 0;
 }
 
-:root {
-  --color-bg: #050508;
-  --color-bg-elevated: #12121a;
-  --color-bg-card: #1a1a24;
-  --color-bg-input: #22222e;
-  --color-text: #ffffff;
-  --color-text-muted: #a0a0b0;
-  --color-border: #2a2a38;
-  --color-purple: #7b2cff;
-  --color-purple-hover: #6200FF;
-  --color-purple-dim: rgba(123, 44, 255, 0.15);
-  --font-main: "AG";
-  --header-height: 64px;
-  --max-width: 1120px;
-  --radius: 10px;
-  --radius-pill: 999px;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-main);
+  font-family: 'Pretendard', var(--font-main), sans-serif;
   color: var(--color-text);
-  background: var(--color-bg);
+  background: var(--color-bg-main);
   line-height: 1.65;
   font-size: 15px;
   word-break: keep-all;
@@ -83,6 +86,7 @@ button {
   margin-inline: auto;
 }
 
+/* ===== Typography & Sections ===== */
 .section {
   padding: 56px 0;
 }
@@ -91,22 +95,34 @@ button {
   font-size: clamp(1.25rem, 4vw, 1.6rem);
   font-weight: 700;
   margin-bottom: 28px;
+  padding-bottom: 16px;
+  text-align: left !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  display: block !important;
 }
 
-/* 문단 기본 스타일 및 문단 간 여백 */
 .section-subtitle {
   font-size: 0.95rem;
   color: var(--color-text-muted);
   line-height: 1.7;
-  margin-bottom: 1.25rem; /* 문단 사이 공간 추가 (원하는 크기로 조절 가능) */
+  margin-bottom: 1.25rem;
 }
 
-/* 마지막 온라인 면접 안내 문구 스타일 */
+.section-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
 .section-notice {
-  font-size: 0.85rem;     /* 기존 0.95rem보다 작게 설정 */
-  color: #9980FF;          /* 지정한 보라색 설정 */
+  font-size: 0.85rem;
+  color: #9980FF;
   line-height: 1.7;
-  margin-top: 1.5rem;      /* 위 문단과의 간격 */
+  margin-top: 1.5rem;
 }
 
 /* ===== Header ===== */
@@ -217,16 +233,15 @@ button {
 }
 
 .cresol_motion {
-  /* margin-top: 10px; /* 텍스트와 영상 사이의 여백 */
   width: 100%;
-  max-width: 900px; /* PC 화면에서 영상이 너무 거대해지는 것을 방지 */
-  margin-inline: auto; /* 컨테이너 중앙 정렬 */
-  border-radius: 16px; /* (선택) 영상 모서리를 둥글게 */
-  overflow: hidden; /* 둥근 모서리 밖으로 삐져나가는 영상 숨김 */
+  max-width: 900px;
+  margin-inline: auto;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .cresol_motion video {
-  display: block; /* 하단 여백 버그 방지 */
+  display: block;
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -250,26 +265,22 @@ button {
   background: transparent;
   border: none;
   cursor: pointer;
-  /* 부드러운 전환 효과 */
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
               opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  /* 기본적으로 양 옆 카드는 반투명 및 살짝 축소 */
   opacity: 0.35;
   transform: scale(0.92);
 }
 
-/* 데스크톱: 중앙에 선택된 카드 강조 */
 .value-card.active {
   opacity: 1;
   transform: scale(1.05);
   cursor: default;
 }
 
-/* 이미지 영역 곡률 */
 .value-card-image {
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--color-bg-elevated, #1a1a24);
+  background: var(--color-bg-elevated);
   border-radius: 20px;
   margin-bottom: 16px;
 }
@@ -289,17 +300,16 @@ button {
   font-weight: 700;
   margin-bottom: 8px;
   line-height: 1.4;
-  color: var(--color-text, #ffffff);
+  color: var(--color-text);
 }
 
 .value-card-text {
   font-size: 0.9rem;
-  color: var(--color-text-muted, #a0a0b0);
+  color: var(--color-text-muted);
   line-height: 1.65;
 }
 
 /* ===== Design Thinking ===== */
-
 .thinking-label {
   font-size: 0.85rem;
   color: var(--color-purple);
@@ -337,12 +347,8 @@ button {
   flex-wrap: wrap;
 }
 
-/* 아이콘 이미지 크기를 0.7배로 축소 */
 .activity-icons img {
   transform: scale(0.7);
-  /* 만약 여백 크기까지 함께 줄이고 싶다면 아래처럼 width/height를 활용하셔도 좋습니다. */
-  /* width: 70%; */
-  /* height: auto; */
 }
 
 .activity-icon {
@@ -369,79 +375,40 @@ button {
 
 .activity-item {
   display: flex;
-  align-items: center; /* 데스크톱: 라벨과 설명을 세로 중앙 정렬 */
+  align-items: center;
   gap: 24px;
-  background: var(--color-bg-card, #1c1c28);
-  border-radius: var(--radius, 16px);
+  background: var(--color-bg-card);
+  border-radius: 16px;
   padding: 24px 28px;
-  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--color-border);
 }
 
-/* 라벨을 보라색 배지(버튼 형태)로 변경 */
 .activity-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 110px;               /* 라벨 상자 고정 너비 */
-  height: 48px;              /* 라벨 상자 높이 */
-  background-color: var(--color-purple, #6200FF);
+  width: 110px;
+  height: 48px;
+  background-color: var(--color-purple);
   color: #ffffff;
   font-weight: 700;
   font-size: 0.9rem;
-  border-radius: 12px;       /* 둥근 모서리 */
-  flex-shrink: 0;            /* 크기가 줄어들지 않도록 고정 */
+  border-radius: 12px;
+  flex-shrink: 0;
   text-align: center;
 }
 
-/* 설명 텍스트 스타일 */
 .activity-desc {
   font-size: 0.95rem;
-  color: var(--color-text, #ffffff);
+  color: var(--color-text);
   line-height: 1.6;
   margin: 0;
 }
 
-/* ===== 세부 활동 내용 다이어그램 모바일 크기 조정 (현재의 1.5배) ===== */
-@media (max-width: 768px) {
-  .scchedule_detail img {
-    /* 기존 0.7 스케일의 1.5배 크기인 1.05로 확대 */
-    transform: scale(1.05);
-    
-    /* 스케일 확대 시 이미지가 화면 밖으로 삐져나가는 것을 방지 */
-    max-width: 100%;
-    height: auto;
-    
-    /* (선택) transform 대신 너비 자체를 조절하고 싶다면 아래 주석을 풀고 사용하세요 */
-    /* transform: none; */
-    /* width: 100%; */
-  }
-}
-
-/* ===== 모바일 반응형 (768px 이하일 때 두번째 사진처럼 변경) ===== */
-@media (max-width: 768px) {
-  .activity-item {
-    flex-direction: column;  /* 위아래 세로 배치 */
-    align-items: flex-start; /* 왼쪽 정렬 */
-    gap: 16px;
-    padding: 20px;
-  }
-
-  .activity-label {
-    width: auto;             /* 모바일에서는 글자 길이에 맞춰 너비 자동 수용 */
-    padding: 0 16px;         /* 좌우 여백 */
-    height: 40px;            /* 모바일 배지 높이 살짝 축소 */
-    font-size: 0.85rem;
-  }
-
-  .activity-desc {
-    font-size: 0.875rem;
-  }
-}
-
-/* ===== FAQ Tabs ===== */
+/* ===== FAQ Tabs & Panels ===== */
 .faq-tabs {
   display: flex;
-  gap: 24px; /* 글자 간격 조정 */
+  gap: 24px;
   margin-bottom: 32px;
   flex-wrap: wrap;
 }
@@ -457,15 +424,13 @@ button {
   transition: all 0.2s;
 }
 
-/* 선택된 탭(active) 및 마우스 호버 시 글자 강조 */
 .faq-tab.active,
 .faq-tab:hover {
   background: transparent;
-  color: var(--color-purple); /* 또는 활성화하고 싶은 글자 색상 */
+  color: var(--color-purple);
   font-weight: 700;
 }
 
-/* ===== FAQ Panels ===== */
 .faq-panel {
   display: none;
 }
@@ -473,9 +438,6 @@ button {
 .faq-panel.active {
   display: block;
 }
-
-/* ===== FAQ List & Item ===== */
-
 
 .faq-item {
   border-bottom: 1px solid var(--color-border);
@@ -508,7 +470,6 @@ button {
   content: "−";
 }
 
-/* 답변 영역 스타일 */
 .faq-answer {
   max-height: 0;
   overflow: hidden;
@@ -516,7 +477,6 @@ button {
   transition: all 0.3s ease;
 }
 
-/* 답변이 열렸을 때 */
 .faq-item.open .faq-answer {
   max-height: 500px;
   opacity: 1;
@@ -524,16 +484,14 @@ button {
   padding-bottom: 20px;
 }
 
-/* 답변 텍스트(p 태그) - 폰트 크기, 두께, 색상 조정 */
 .faq-answer p {
-  font-size: 0.85rem;                /* 질문(0.95rem)보다 더 작은 크기 */
-  font-weight: 400;                 /* 더 얇은 글씨 두께 */
-  color: rgba(255, 255, 255, 0.65);  /* 흐린 반투명 흰색 (또나 var(--color-text-muted)) */
-  line-height: 1.6;                 /* 줄간격 설정 */
-  margin-bottom: 6px;               /* 문단 간격 */
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  margin-bottom: 6px;
 }
 
-/* 마지막 문단 밑 여백 제거 */
 .faq-answer p:last-child {
   margin-bottom: 0;
 }
@@ -570,27 +528,6 @@ button {
   object-fit: contain;
 }
 
-/* ===== FAQ 모바일 버전: 질문/답변 모두 보이기 ===== */
-@media (max-width: 768px) {
-  /* 답변 영역 항상 펼쳐두기 */
-  .faq-answer {
-    max-height: 1000px !important; /* 닫혀있던 높이 제한을 풀어줌 */
-    opacity: 1 !important; /* 텍스트가 항상 보이게 투명도 100% */
-    padding-top: 4px !important;
-    padding-bottom: 20px !important;
-  }
-
-  /* 더 이상 열고 닫지 않으므로 질문 우측의 '+' 또는 '-' 아이콘 숨김 */
-  .faq-question::after {
-    display: none !important;
-  }
-
-  /* 클릭이 불필요함을 알리기 위해 마우스 커서 상태를 기본으로 변경 */
-  .faq-question {
-    cursor: default !important;
-  }
-}
-
 /* ===== CTA ===== */
 .cta-section {
   padding: 40px 0 56px;
@@ -624,7 +561,7 @@ button {
   transform: translateY(-1px);
 }
 
-/* ===== Project Page ===== */
+/* ===== Project Page & Detailed Components ===== */
 .page-header {
   padding: 40px 0 24px;
 }
@@ -635,14 +572,13 @@ button {
   margin-bottom: 20px;
 }
 
-/* 드롭다운 전체 컨테이너 */
+/* Filter Dropdown */
 .filter-select {
   position: relative;
   display: inline-block;
   font-family: inherit;
 }
 
-/* 필터 버튼 (#2F2E39) */
 .filter-btn {
   display: flex;
   align-items: center;
@@ -665,7 +601,6 @@ button {
   transition: transform 0.2s ease;
 }
 
-/* 열렸을 때 화살표 회전 및 상단 모서리 스타일 변경 */
 .filter-select.open .filter-btn {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -675,9 +610,8 @@ button {
   transform: rotate(180deg);
 }
 
-/* 드롭다운 바탕 상자 (#605E6F) */
 .filter-dropdown {
-  display: none; /* 기본 상태에서는 숨김 */
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -694,19 +628,17 @@ button {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* 드롭다운 열림 클래스 */
 .filter-select.open .filter-dropdown {
   display: block;
 }
 
-/* 옵션 항목 및 구분선 스타일 */
 .filter-dropdown li {
   padding: 12px 16px;
   color: #ffffff;
   font-size: 0.9rem;
   text-align: center;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* 항목 간 구분선 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   transition: background-color 0.2s ease;
 }
 
@@ -714,7 +646,6 @@ button {
   border-bottom: none; 
 }
 
-/* 옵션 호버 및 선택 상태 효과 */
 .filter-dropdown li:hover {
   background-color: rgba(255, 255, 255, 0.15);
 }
@@ -724,7 +655,6 @@ button {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* 스크롤바 모던 스타일링 */
 .filter-dropdown::-webkit-scrollbar {
   width: 6px;
 }
@@ -797,7 +727,6 @@ button {
   overflow: hidden;
 }
 
-/* ===== Pagination ===== */
 .pagination {
   display: flex;
   align-items: center;
@@ -835,29 +764,61 @@ button {
 }
 
 /* ===== Project Detail ===== */
+.project-detail-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 24px 80px 24px;
+  color: #ffffff;
+}
+
+.detail-header {
+  max-width: 650px;
+  margin-bottom: 48px;
+}
+
 .detail-hero {
   padding: 40px 0 32px;
 }
 
-.detail-cohort {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--color-purple);
-  margin-bottom: 12px;
+/* 메타 정보 컨테이너 (기수와 팀원 이름을 가로 정렬) */
+.detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* 기수와 팀원 이름 사이 간격 */
+  margin-top: 16px;
 }
 
+/* 기수 스타일 */
+.detail-cohort {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #a0a0a0); /* 또는 기존 보라색 var(--color-purple) */
+}
+
+/* 중복 클래스 병합 */
 .detail-title {
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 800;
-  margin-bottom: 12px;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #ffffff;
 }
 
 .detail-desc {
-  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cccccc;
+  margin-bottom: 24px;
+  word-break: keep-all;
+  white-space: pre-line;
+}
+
+.detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 32px;
+  color: #aaaaaa;
 }
 
 .detail-cover {
@@ -867,34 +828,54 @@ button {
   border: 1px solid var(--color-border);
 }
 
+.detail-gallery-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 16px;
+}
+
+.detail-gallery-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+.detail-gallery-wrapper::-webkit-scrollbar-track {
+  background: #1f1f2e;
+  border-radius: 3px;
+}
+.detail-gallery-wrapper::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 3px;
+}
+
 .detail-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  display: flex;
+  gap: 20px;
+  width: max-content;
 }
 
 .detail-gallery img {
-  border-radius: var(--radius);
+  height: 380px;
+  width: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  background-color: #1a1a1a;
   border: 1px solid var(--color-border);
 }
 
+/* 팀원 이름 스타일 (박스/테두리 제거) */
 .detail-members {
-  margin-top: 24px;
-  padding: 20px;
-  background: var(--color-bg-card);
-  border-radius: var(--radius);
-  border: 1px solid var(--color-border);
-}
-
-.detail-members h3 {
   font-size: 0.9rem;
-  margin-bottom: 8px;
-  color: var(--color-purple);
+  color: var(--color-text-muted, #a0a0a0);
 }
 
+/* 내부 태그가 들어갈 경우를 대비한 가독성 처리 (선택사항) */
+.detail-members h3,
 .detail-members p {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
+  margin: 0;
+  padding: 0;
+  display: inline;
+  font-size: inherit;
+  color: inherit;
 }
 
 .btn-back {
@@ -911,41 +892,7 @@ button {
   color: var(--color-purple);
 }
 
-/* ===== 프로젝트 상세 갤러리 모바일 환경(768px 이하) 세로 배치 ===== */
-@media (max-width: 768px) {
-  /* 가로 스크롤 속성을 해제 */
-  .detail-gallery-wrapper {
-    overflow-x: hidden !important; 
-    width: 100% !important;
-  }
-  
-  /* flex 방향을 가로(row)에서 세로(column)로 변경 */
-  .detail-gallery {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px; /* 세로로 배치된 이미지 사이의 간격 (원하는 대로 조절 가능) */
-    width: 100% !important;
-  }
-
-  /* 이미지가 모바일 화면 가로 너비에 꽉 차도록 비율 조정 */
-  .detail-gallery img {
-    width: 100% !important;
-    height: auto !important;
-    max-width: 100%;
-    object-fit: cover; /* 이미지가 찌그러지지 않게 유지 */
-  }
-}
-
-.detail-desc {
-  white-space: pre-line; /* 데이터에 입력한 줄바꿈을 그대로 화면에 적용 */
-  line-height: 1.6;      /* 줄 간격을 넓혀서 읽기 편하게 함 */
-}
-
-/* ==========================================
-   모집 일정 (Schedule Timeline)
-   ========================================== */
-
-/* 2. 노트북 이상 PC 화면: 가로 배치 */
+/* ===== Schedule Timeline & Details ===== */
 .schedule-timeline {
   display: flex;
   align-items: center;
@@ -954,10 +901,9 @@ button {
   width: 100%;
 }
 
-/* 1. 각 일정 카드 (둥근 상자 디자인) */
 .schedule-step {
   flex: 1;
-  background: #181824; /* 다크 보라빛 카드 배경 */
+  background: #181824;
   border-radius: 16px;
   padding: 32px 20px;
   text-align: left;
@@ -978,51 +924,23 @@ button {
 .schedule-step-date {
   font-size: 1.15rem;
   font-weight: 500;
-  color: #a78bfa; /* 보라색 날짜 텍스트 */
+  color: #a78bfa;
 }
 
-/* 보라색 화살표 아이콘 */
 .schedule-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6200FF; /* 보라색 포인트 컬러 */
+  color: #6200FF;
   flex-shrink: 0;
 }
 
 .schedule-note {
-  margin-top: 24px;
-  font-size: 0.875rem;
-  color: #a1a1aa;
+  margin-top: 20px;
+  font-size: 0.875rem; /* 중복 병합 */
+  color: #71717a;
 }
 
-/* ==========================================
-   3. 모바일 반응형 (768px 이하): 세로 배치
-   ========================================== */
-@media (max-width: 768px) {
-  .schedule-timeline {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
-
-  .schedule-step {
-    min-height: auto;
-    padding: 24px 20px;
-  }
-
-  /* 모바일에서는 화살표를 아래 방향으로 회전 */
-  .schedule-arrow {
-    transform: rotate(90deg);
-    padding: 4px 0;
-  }
-}
-
-/* ==========================================
-   세부사항 & 지원 자격 스타일
-   ========================================== */
-
-/* 1. 세부사항 테이블 구조 */
 .info-table {
   width: 100%;
   max-width: 600px;
@@ -1031,63 +949,47 @@ button {
 }
 
 .info-table tr {
-  border: none; /* 기존 하단 선 제거 */
+  border: none;
 }
 
-/* 2. 세부사항 항목 제목 (활동 기간, 활동 회비 등) */
 .info-table th {
   width: 120px;
   padding: 12px 0;
   text-align: left;
-  font-size: 1.05rem; /* 섹션 제목보다 작고 또렷한 폰트 크기 */
+  font-size: 1.05rem;
   font-weight: 600;
   color: #ffffff;
   vertical-align: middle;
 }
 
-/* 3. 세부사항 구체적인 내용 */
 .info-table td {
   padding: 12px 0;
   text-align: left;
-  font-size: 0.95rem; /* 항목 제목보다 살짝 작은 크기 */
+  font-size: 0.95rem;
   font-weight: 400;
-  color: #BEBDC5; /* 요청하신 폰트 색상 */
+  color: #BEBDC5;
   vertical-align: middle;
 }
 
-/* 1 & 3. 지원 자격 박스 스타일 (배경/테두리 제거 후 깔끔한 텍스트 처리) */
 .eligibility-box {
   background: transparent;
   border: none;
   padding: 0;
   margin-top: 24px;
-  font-size: 0.95rem; /* 구체적인 내용 폰트 크기 */
+  font-size: 0.95rem;
   font-weight: 400;
-  color: #BEBDC5; /* 요청하신 폰트 색상 */
+  color: #BEBDC5;
   line-height: 1.6;
-}
-
-/* 반응형 (모바일 화면) */
-@media (max-width: 768px) {
-  .info-table th {
-    width: 100px;
-    font-size: 0.95rem;
-  }
-  
-  .info-table td,
-  .eligibility-box {
-    font-size: 0.875rem;
-  }
 }
 
 .offline-badge-info {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* 💡 왼쪽 정렬을 오른쪽 정렬로 변경 */
+  justify-content: flex-end;
   gap: 8px;
   font-size: 0.9rem;
   color: #a1a1aa;
-  margin-bottom: 20px;      /* 💡 하단 마진 추가 (원하는 수치로 조절 가능) */
+  margin-bottom: 20px;
 }
 
 .offline-dot {
@@ -1098,16 +1000,14 @@ button {
   box-shadow: 0 0 8px #6200FF;
 }
 
-/* 5열 그리드 레이아웃 (노트북/PC 이상) */
 .week-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 }
 
-/* 카드 기본 스타일 */
 .week-card {
-  background: #14141d; /* 다크 모드 카드 배경 */
+  background: #14141d;
   border-radius: 16px;
   padding: 20px 18px;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1117,13 +1017,11 @@ button {
   box-sizing: border-box;
 }
 
-/* 2. 대면 카드 스타일 (#6200FF 테두리) */
 .week-card.offline {
   border: 1.5px solid #6200FF;
   box-shadow: 0 0 10px rgba(98, 0, 255, 0.15);
 }
 
-/* 카드 상단 (날짜 + 대면 점) */
 .week-card-header {
   display: flex;
   justify-content: space-between;
@@ -1137,12 +1035,11 @@ button {
   color: #a1a1aa;
 }
 
-/* 대면 일 때만 켜지는 우상단 점 뱃지 */
 .week-card-badge {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #3f3f46; /* 기본 비대면(어두운 점) */
+  background-color: #3f3f46;
 }
 
 .week-card.offline .week-card-badge {
@@ -1150,7 +1047,6 @@ button {
   box-shadow: 0 0 8px #6200FF;
 }
 
-/* 세션 차수 */
 .week-card-session {
   font-size: 1.25rem;
   font-weight: 700;
@@ -1158,7 +1054,6 @@ button {
   margin-bottom: 16px;
 }
 
-/* 중간 구분선 */
 .week-card-divider {
   width: 100%;
   height: 1px;
@@ -1166,7 +1061,6 @@ button {
   margin-bottom: 16px;
 }
 
-/* 상세 세부 내용 */
 .week-card-title {
   font-size: 0.95rem;
   font-weight: 700;
@@ -1181,44 +1075,31 @@ button {
   line-height: 1.45;
 }
 
-/* 하단 안내 문구 */
-.schedule-note {
-  margin-top: 20px;
-  font-size: 0.85rem;
-  color: #71717a;
-}
-
-/* ==========================================
-   반응형 (태블릿 & 모바일)
-   ========================================== */
-
-/* 태블릿 (1024px 이하): 3열로 조율 */
-@media (max-width: 1024px) {
-  .week-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-
-/* ===== Base & Theme Variables ===== */
-:root {
-  --color-bg-main: #0c0812;
-  --color-bg-input: #1a1622;
-  --color-bg-light: #251f30;
-  --color-purple: #6c23ff;
-  --color-text: #ffffff;
-  --color-text-muted: #8b8599;
-  --color-border: #2e283b;
-  --radius: 8px;
-}
-
-body {
-  background-color: var(--color-bg-main);
-  color: var(--color-text);
-  font-family: 'Pretendard', sans-serif;
-}
-
 /* ===== Form Structure ===== */
+.apply-header {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 36px;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.apply-header h1,
+.apply-header h2,
+.apply-header p,
+.form-section h2,
+.form-section h3,
+.form-section,
+.info-section,
+.apply-form > div {
+  text-align: left !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
 .apply-form {
   max-width: 800px;
   margin: 0 auto;
@@ -1230,22 +1111,10 @@ body {
   padding: 0;
 }
 
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-}
-
-.section-desc {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  margin-bottom: 16px;
-  line-height: 1.5;
-}
-
 .form-group {
   margin-bottom: 24px;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
 }
 
 .form-row {
@@ -1260,6 +1129,8 @@ body {
   font-weight: 600;
   margin-bottom: 12px;
   line-height: 1.4;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
 }
 
 .char-limit {
@@ -1357,6 +1228,8 @@ body {
   color: var(--color-text-muted);
   line-height: 1.6;
   margin-top: 12px;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
 }
 
 .photo-upload-box {
@@ -1395,7 +1268,17 @@ body {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 12px;
+  padding-bottom: 20px !important;
+  margin-bottom: 20px !important;
+  border-bottom: 1px solid var(--color-border);
 }
+
+.activity-row:last-child {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
 .btn-add {
   background-color: var(--color-bg-light);
   color: var(--color-text);
@@ -1411,11 +1294,47 @@ body {
 }
 
 /* Skills */
-.skills-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 24px;
+.skills-group,
+.skill-group,
+.checkbox-group {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 10px 16px !important;
+  width: 100% !important;
 }
+
+.skills-group label,
+.skill-group label,
+.checkbox-group label,
+.skill-item {
+  width: auto !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex: none !important;
+}
+
+.skills-group label:last-child,
+.skill-other-label {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: auto !important;
+}
+
+.skill-other-input,
+input[name="skillOther"] {
+  width: 140px !important;
+  margin-left: 8px !important;
+  margin-right: 8px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  flex: none !important;
+}
+
 .skill-other {
   display: flex;
   align-items: center;
@@ -1587,27 +1506,46 @@ body {
   object-fit: contain;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* ==========================================
+   Responsive Queries (해상도별 통합)
+   ========================================== */
 
+/* 1. 태블릿 이하 (1024px 이하) */
+@media (max-width: 1024px) {
   .week-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 2. 태블릿/작은 화면 (900px 이하) */
+@media (max-width: 900px) {
+  .project-grid, .week-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .activity-item {
     grid-template-columns: 1fr;
     gap: 8px;
   }
 }
 
+/* 3. 모바일 (768px 이하) 통합 블록 */
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
+  /* Layout & Utility */
+  .container {
+    width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  .apply-form {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
   }
 
+  /* Header Navigation */
+  .menu-toggle { display: flex; }
   .nav {
     display: none;
     position: absolute;
@@ -1619,173 +1557,121 @@ body {
     border-bottom: 1px solid var(--color-border);
     padding: 12px 16px;
   }
+  .nav.open { display: flex; }
+  .nav-link { width: 100%; padding: 12px 16px; }
+  .header-inner .btn-apply { display: none; }
+  .header-inner .btn-apply.mobile-show { display: inline-flex; }
 
-  .nav.open {
-    display: flex;
-  }
-
-  .nav-link {
-    width: 100%;
-    padding: 12px 16px;
-  }
-
-  .header-inner .btn-apply {
-    display: none;
-  }
-
-  .header-inner .btn-apply.mobile-show {
-    display: inline-flex;
-  }
-
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .photo-upload {
-    flex-direction: column;
-  }
-
-  .schedule-timeline {
-    flex-direction: column;
-  }
-
-  .schedule-arrow {
-    transform: rotate(90deg);
-    justify-content: center;
-  }
-
-  .detail-gallery {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ===== 모바일 반응형 (768px 이하일 때 세로 배치) ===== */
-@media (max-width: 768px) {
+  /* Carousel */
   .value-carousel {
-    flex-direction: column; /* 세로 세열 */
+    flex-direction: column;
     gap: 36px;
   }
-
   .value-card {
     flex: 1 1 100%;
     width: 100%;
     max-width: 100%;
-    opacity: 1 !important;    /* 모바일에서는 모두 선명하게 */
-    transform: none !important; /* 모바일 크기 변형 해제 */
+    opacity: 1 !important;
+    transform: none !important;
     cursor: default;
   }
-}
 
-@media (max-width: 320px) {
-  .container {
-    width: min(100% - 24px, var(--max-width));
+  /* Activities & Diagrams */
+  .activity-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
   }
-
-  .btn-cta-large {
-    padding: 14px 48px;
-    width: 100%;
-  }
-}
-
-/* ==========================================
-   프로젝트 상세페이지 스타일 (이미지 3번 반영)
-   ========================================== */
-   .project-detail-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 120px 24px 80px 24px;
-    color: #ffffff;
-  }
-  
-  .detail-header {
-    max-width: 650px;
-    margin-bottom: 48px;
-  }
-  
-  .detail-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #ffffff;
-  }
-  
-  .detail-desc {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #cccccc;
-    margin-bottom: 24px;
-    word-break: keep-all;
-  }
-  
-  .detail-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.95rem;
-    color: #aaaaaa;
-  }
-  
-  .detail-cohort {
-    font-weight: 600;
-  }
-  
-  /* 갤러리 영역: 가로 스크롤 배치 */
-  .detail-gallery-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 16px;
-  }
-  
-  /* 커스텀 스크롤바 (보라색 포인트 스타일) */
-  .detail-gallery-wrapper::-webkit-scrollbar {
-    height: 6px;
-  }
-  .detail-gallery-wrapper::-webkit-scrollbar-track {
-    background: #1f1f2e;
-    border-radius: 3px;
-  }
-  .detail-gallery-wrapper::-webkit-scrollbar-thumb {
-    background: #7c3aed;
-    border-radius: 3px;
-  }
-  
-  .detail-gallery {
-    display: flex;
-    gap: 20px;
-    width: max-content; /* 이미지 길이에 따라 늘어남 */
-  }
-  
-  .detail-gallery img {
-    height: 380px; /* 이미지 높이 지정 */
+  .activity-label {
     width: auto;
-    border-radius: 8px;
-    object-fit: contain;
-    background-color: #1a1a1a;
+    padding: 0 16px;
+    height: 40px;
+    font-size: 0.85rem;
   }
+  .activity-desc { font-size: 0.875rem; }
+  .scchedule_detail img {
+    transform: scale(1.05);
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* FAQ Override */
+  .faq-answer {
+    max-height: 1000px !important;
+    opacity: 1 !important;
+    padding-top: 4px !important;
+    padding-bottom: 20px !important;
+  }
+  .faq-question { cursor: default !important; }
+  .faq-question::after { display: none !important; }
+
+  /* Grid Layouts */
+  .project-grid { grid-template-columns: 1fr; }
+  .week-grid { grid-template-columns: 1fr; gap: 12px; }
+  .week-card { min-height: auto; }
+
+  /* Gallery Layout */
+  .detail-gallery-wrapper {
+    overflow-x: hidden !important; 
+    width: 100% !important;
+  }
+  .detail-gallery {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px;
+    width: 100% !important;
+  }
+  .detail-gallery img {
+    width: 100% !important;
+    height: 260px; /* 기존 height:auto와 260px 충돌 해결 */
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  /* Timeline */
+  .schedule-timeline { flex-direction: column; align-items: stretch; gap: 8px; }
+  .schedule-step { min-height: auto; padding: 24px 20px; }
+  .schedule-arrow { transform: rotate(90deg); padding: 4px 0; justify-content: center; }
+
+  /* Tables & Info */
+  .info-table th { width: 100px; font-size: 0.95rem; }
+  .info-table td, .eligibility-box { font-size: 0.875rem; }
+
+  /* Form Elements */
+  .form-fieldset { margin-bottom: 40px !important; padding: 0 !important; }
+  .form-row { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .dob-group { display: flex; gap: 10px; width: 100%; }
+  .radio-group { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+  .activity-row { grid-template-columns: 1fr !important; gap: 8px !important; }
   
-  @media (max-width: 768px) {
-    .detail-gallery img {
-      height: 260px;
-    }
-  }
+  .portfolio-inputs { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
+  .portfolio-link-wrapper { width: 100% !important; }
+  
+  .photo-upload { flex-direction: column; }
+  .photo-upload-box { width: 120px; height: 160px; }
 
-  /* 4. 모바일 (768px 이하): 1열 세로 배치 */
-@media (max-width: 768px) {
-  .week-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  /* Skills Selection */
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .skills-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    width: 100% !important;
   }
+  .skills-group .custom-checkbox { width: 100% !important; margin-bottom: 0 !important; }
+  .skill-other { width: 100% !important; display: flex !important; align-items: center !important; gap: 8px !important; }
+  .skill-other .small-input { flex: 1 !important; width: auto !important; }
+  
+  /* Interview Table Mobile */
+  .interview-table { width: 100% !important; border-collapse: collapse !important; margin-top: 12px !important; }
+  .interview-table th, .interview-table td { padding: 12px 8px !important; font-size: 0.85rem !important; text-align: center !important; }
+  .interview-table th { background-color: var(--color-bg-input) !important; color: var(--color-text) !important; font-weight: 600 !important; }
+}
 
-  .week-card {
-    min-height: auto;
-  }
+/* 4. 최소 화면 (320px 이하) */
+@media (max-width: 320px) {
+  .container { width: min(100% - 24px, var(--max-width)); }
+  .btn-cta-large { padding: 14px 48px; width: 100%; }
 }

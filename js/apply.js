@@ -11,10 +11,14 @@ let photoData = { base64: "", name: "" };
 
 // 페이지 로드 시 초기화
 window.addEventListener("DOMContentLoaded", () => {
-  initBirthSelects();   // 1. 생년월일 드롭다운 옵션 생성
-  initActivityButton(); // 2. 교내/대외활동 추가 버튼 이벤트 연결
-  restoreDraft();       // 임시저장 불러오기
+  initBirthSelects();             // 1. 생년월일 드롭다운 옵션 생성
+  initActivityButton();           // 2. 교내/대외활동 추가 버튼 이벤트 연결
+  handleInterviewTableResponsive(); // 3. 면접 시간 표 반응형 초기화
+  restoreDraft();                 // 4. 임시저장 불러오기
 });
+
+// 화면 크기 변경 시 면접 표 반응형 처리
+window.addEventListener("resize", handleInterviewTableResponsive);
 
 // 폼 입력 시 자동 저장
 form.addEventListener("input", saveDraft);
@@ -31,15 +35,12 @@ function initBirthSelects() {
   monthSelect.innerHTML = '<option value="">월</option>';
   daySelect.innerHTML = '<option value="">일</option>';
 
-  // 1990년 ~ 2010년 생성
   for (let y = 2026; y >= 1950; y--) {
     yearSelect.innerHTML += `<option value="${y}년">${y}년</option>`;
   }
-  // 1월 ~ 12월 생성
   for (let m = 1; m <= 12; m++) {
     monthSelect.innerHTML += `<option value="${m}월">${m}월</option>`;
   }
-  // 1일 ~ 31일 생성
   for (let d = 1; d <= 31; d++) {
     daySelect.innerHTML += `<option value="${d}일">${d}일</option>`;
   }
@@ -65,24 +66,26 @@ function initActivityButton() {
 }
 
 // ===== 3. 증명사진 첨부 처리 =====
-photoInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+if (photoInput) {
+  photoInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-  if (file.size > 5 * 1024 * 1024) {
-    alert("사진 용량은 5MB 이하만 가능합니다.");
-    photoInput.value = "";
-    return;
-  }
+    if (file.size > 5 * 1024 * 1024) {
+      alert("사진 용량은 5MB 이하만 가능합니다.");
+      photoInput.value = "";
+      return;
+    }
 
-  const reader = new FileReader();
-  reader.onload = (event) => {
-    photoData.base64 = event.target.result;
-    photoData.name = file.name;
-    if (photoUploadBoxSpan) photoUploadBoxSpan.innerHTML = "✔<br>첨부 완료";
-  };
-  reader.readAsDataURL(file);
-});
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      photoData.base64 = event.target.result;
+      photoData.name = file.name;
+      if (photoUploadBoxSpan) photoUploadBoxSpan.innerHTML = "✔<br>첨부 완료";
+    };
+    reader.readAsDataURL(file);
+  });
+}
 
 // ===== 4. 자동 저장 / 불러오기 =====
 function saveDraft() {
@@ -122,6 +125,8 @@ function restoreDraft() {
   if (rawData._activities && Array.isArray(rawData._activities)) {
     const activityTable = document.querySelector('.activity-table');
     const addBtn = document.querySelector('.btn-add');
+    if (!activityTable || !addBtn) return;
+
     const requiredRows = Math.ceil(rawData._activities.length / 3);
     let currentRows = document.querySelectorAll('.activity-row').length;
 
@@ -169,7 +174,18 @@ function collectFormData() {
   data.q4 = formData.get("q4") || "";
   data.portfolioLink = formData.get("portfolioLink") || "";
 
-  data.skills = formData.getAll("skill").join(", ");
+  // 프로그램 활용 능력 (기타 입력값 정제 포함)
+  const selectedSkills = formData.getAll("skill");
+  const skillOtherInput = formData.get("skillOther") || "";
+  
+  const formattedSkills = selectedSkills.map(skill => {
+    if (skill === "기타" && skillOtherInput.trim() !== "") {
+      return `기타(${skillOtherInput.trim()})`;
+    }
+    return skill;
+  });
+  data.skills = formattedSkills.join(", ");
+
   data.interviews = formData.getAll("interview").join(", ");
 
   const activityRows = document.querySelectorAll('.activity-row');
@@ -188,7 +204,7 @@ function collectFormData() {
   return data;
 }
 
-// ===== 6. 포트폴리오 제외 모든 입력값 유효성 검사 =====
+// ===== 6. 유효성 검사 =====
 function validateForm(data) {
   if (data.privacyAgree === "미동의") return "개인정보 활용 동의에 체크해 주세요.";
   if (!data.photoBase64) return "증명사진을 첨부해 주세요.";
@@ -206,7 +222,6 @@ function validateForm(data) {
   if (!data.skills) return "프로그램 활용 능력을 최소 1개 이상 선택해 주세요.";
   if (!data.interviews) return "참여 가능한 면접 날짜를 최소 1개 이상 선택해 주세요.";
 
-  // 포트폴리오(data.portfolioLink)는 검사하지 않고 통과
   return null;
 }
 
@@ -253,3 +268,61 @@ form.addEventListener("submit", async (e) => {
     submitBtn.textContent = "제출하기";
   }
 });
+
+// ===== 8. 면접 날짜 표 반응형 행/열 전환 함수 =====
+function handleInterviewTableResponsive() {
+  const table = document.querySelector('.interview-table');
+  if (!table) return;
+
+  const isMobile = window.innerWidth <= 768;
+  const currentMode = table.getAttribute('data-responsive-mode');
+
+  // 1) 최초 진입 시 모드 판별
+  if (!currentMode) {
+    if (!isMobile) {
+      // PC 모드에서는 원본 표(시간=열, 요일=행) 그대로 사용
+      table.setAttribute('data-responsive-mode', 'desktop');
+      return;
+    } else {
+      // 모바일 최초 진입 시 반전 수행
+      table.setAttribute('data-responsive-mode', 'mobile');
+    }
+  } else {
+    // 이미 현재 모드와 화면 설정이 일치하면 아무 작업 하지 않음
+    if ((isMobile && currentMode === 'mobile') || (!isMobile && currentMode === 'desktop')) {
+      return;
+    }
+  }
+
+  // 2) 행과 열 반전 (Transpose)
+  const rows = Array.from(table.querySelectorAll('tr'));
+  if (rows.length === 0) return;
+
+  const matrix = rows.map(row => Array.from(row.children));
+  const rowCount = matrix.length;
+  const colCount = matrix[0].length;
+
+  const newTable = document.createElement('table');
+  newTable.className = table.className;
+  newTable.setAttribute('data-responsive-mode', isMobile ? 'mobile' : 'desktop');
+
+  const thead = document.createElement('thead');
+  const tbody = document.createElement('tbody');
+
+  for (let col = 0; col < colCount; col++) {
+    const newTr = document.createElement('tr');
+    for (let row = 0; row < rowCount; row++) {
+      const cell = matrix[row][col].cloneNode(true);
+      newTr.appendChild(cell);
+    }
+    if (col === 0) {
+      thead.appendChild(newTr);
+    } else {
+      tbody.appendChild(newTr);
+    }
+  }
+
+  newTable.appendChild(thead);
+  newTable.appendChild(tbody);
+  table.parentNode.replaceChild(newTable, table);
+}
