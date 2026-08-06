@@ -44,6 +44,22 @@ function initBirthSelects() {
   for (let d = 1; d <= 31; d++) {
     daySelect.innerHTML += `<option value="${d}일">${d}일</option>`;
   }
+
+  const selects = [yearSelect, monthSelect, daySelect];
+  
+  selects.forEach((select) => {
+    if (!select.value) {
+      select.classList.add("is-placeholder");
+    }
+
+    select.addEventListener("change", () => {
+      if (!select.value) {
+        select.classList.add("is-placeholder");
+      } else {
+        select.classList.remove("is-placeholder");
+      }
+    });
+  });
 }
 
 // ===== 2. 교내/대외활동 행 추가 버튼 =====
