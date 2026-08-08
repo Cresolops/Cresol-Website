@@ -94,8 +94,7 @@ button {
 .section-title {
   font-size: clamp(1.25rem, 4vw, 1.6rem);
   font-weight: 700;
-  margin-bottom: 28px;
-  padding-bottom: 16px;
+  margin-bottom: 30px;
   text-align: left !important;
   margin-left: 0 !important;
   padding-left: 0 !important;
@@ -112,7 +111,7 @@ button {
 .section-desc {
   font-size: 0.85rem;
   color: var(--color-text-muted);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   line-height: 1.5;
   margin-left: 0 !important;
   padding-left: 0 !important;
@@ -158,7 +157,7 @@ button {
 }
 
 .nav-link {
-  padding: 8px 16px;
+  padding: 8px 24px;
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-text-muted);
@@ -217,19 +216,23 @@ button {
 }
 
 .hero-title {
-  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  /* 최소 2rem ~ 최대 64pt까지 반응형 조절 */
+  font-size: clamp(2rem, 6vw, 64pt);
   font-weight: 800;
-  line-height: 1.25;
-  margin-bottom: 16px;
+  line-height: 1.5; /* 150% */
+  margin-bottom: 32px;
+  margin-top: 220px;
   letter-spacing: -0.02em;
 }
 
 .hero-desc {
-  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  /* 최소 0.9rem ~ 최대 18pt까지 반응형 조절 */
+  font-size: clamp(0.9rem, 2vw, 18pt);
   color: var(--color-text-muted);
   max-width: 480px;
   margin-inline: auto;
-  line-height: 1.75;
+  line-height: 1.6; /* 160% */
+  margin-bottom: 32px;
 }
 
 .cresol_motion {
@@ -238,6 +241,7 @@ button {
   margin-inline: auto;
   border-radius: 16px;
   overflow: hidden;
+  margin-bottom: 200px;
 }
 
 .cresol_motion video {
@@ -258,10 +262,20 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px 0;
+  margin-bottom: 200px;
 }
 
+.value-card.active {
+  opacity: 1;
+  transform: scale(1.05);
+  cursor: default;
+}
+
+/* Value Card 전체 너비를 부모에 맞게 반응형으로 설정 */
 .value-card {
-  flex: 0 0 min(85%, 380px);
+  flex: 1 1 100%;      /* Flex 항목이 공간에 맞춰 가로로 유연하게 늘어남 */
+  width: 100%;         /* 가로 너비 100% 채움 */
+  max-width: none;     /* 가로 너비 최대 제한 해제 (필요시 제거) */
   background: transparent;
   border: none;
   cursor: pointer;
@@ -271,24 +285,21 @@ button {
   transform: scale(0.92);
 }
 
-.value-card.active {
-  opacity: 1;
-  transform: scale(1.05);
-  cursor: default;
-}
-
+/* 이미지 컨테이너: 가로는 반응형(100%), 세로는 220px 고정 */
 .value-card-image {
-  aspect-ratio: 4 / 3;
+  width: 100%;         /* 가로는 화면/부모에 따라 반응 */
+  height: 220px;       /* 세로 높이는 220px 고정 */
   overflow: hidden;
   background: var(--color-bg-elevated);
   border-radius: 20px;
   margin-bottom: 16px;
 }
 
+/* 내부 이미지 채우기 설정 */
 .value-card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;   /* 가로가 늘어나도 비율을 유지하며 220px 높이를 꽉 채움 */
 }
 
 .value-card-body {
@@ -336,6 +347,10 @@ button {
 
 .thinking-image img {
   width: 100%;
+}
+
+.thinking-section{
+  margin-bottom: 200px;
 }
 
 /* ===== Activity Timeline ===== */
@@ -403,6 +418,7 @@ button {
   color: var(--color-text);
   line-height: 1.6;
   margin: 0;
+  margin-left: 7px;
 }
 
 /* ===== FAQ Tabs & Panels ===== */
@@ -685,7 +701,9 @@ button {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   transition: transform 0.2s, border-color 0.2s;
-  display: block;
+  display: flex;
+  flex-direction: column; 
+  height: 100%; 
 }
 
 .project-card:hover {
@@ -694,9 +712,10 @@ button {
 }
 
 .project-cover {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 48 / 27; /* 1920x1080 비율로 통일 */
   overflow: hidden;
   background: var(--color-bg-elevated);
+  flex-shrink: 0;
 }
 
 .project-cover img {
@@ -707,10 +726,14 @@ button {
 
 .project-body {
   padding: 14px 16px 18px;
+  flex: 1; /* 카드 내부 남은 여백을 채워 높이를 동일하게 고정 */
+  display: flex;
+  flex-direction: column;
 }
 
 .project-cohort {
   display: inline-block;
+  align-self: flex-start; /* 뱃지 너비 자동 조절 */
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--color-purple);
@@ -760,7 +783,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;          /* 버튼 사이 간격 */
+  gap: 20px;         
   margin-top: 40px;
 }
 
@@ -768,7 +791,7 @@ button {
 .pagination button {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.45); /* 회색 글씨 (var(--color-text-muted) 대체 가능) */
+  color: rgba(255, 255, 255, 0.45); /* 회색 글씨 */
   font-size: 1rem;               /* 글자 및 꺾쇠 크기 */
   font-weight: 500;
   cursor: pointer;
@@ -782,7 +805,7 @@ button {
   color: #ffffff;
 }
 
-/* 현재 선택된 페이지 (보라색 박스 제거 -> 흰색 + 두껍게) */
+/* 현재 선택된 페이지 */
 .pagination button.active {
   background: transparent;
   color: #ffffff;
@@ -791,8 +814,8 @@ button {
 
 /* 첫/이전 페이지 등 클릭 불가능한 상태의 화살표 */
 .pagination button:disabled {
-  color: rgba(255, 255, 255, 0.25); /* 은은한 회색으로 표시 */
-  opacity: 1;                       /* 기존 opacity로 인해 안 보이던 현상 방지 */
+  color: rgba(255, 255, 255, 0.25);
+  opacity: 1;
   cursor: default;
 }
 
@@ -817,7 +840,7 @@ button {
 .detail-meta {
   display: flex;
   align-items: center;
-  gap: 12px; /* 기수와 팀원 이름 사이 간격 */
+  gap: 12px;
   margin-top: 16px;
 }
 
@@ -826,10 +849,9 @@ button {
   display: inline-block;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-text-muted, #a0a0a0); /* 또는 기존 보라색 var(--color-purple) */
+  color: #CABAFF;
 }
 
-/* 중복 클래스 병합 */
 .detail-title {
   font-size: 2.25rem;
   font-weight: 700;
@@ -895,13 +917,12 @@ button {
   border: 1px solid var(--color-border);
 }
 
-/* 팀원 이름 스타일 (박스/테두리 제거) */
+/* 팀원 이름 스타일 */
 .detail-members {
   font-size: 0.9rem;
-  color: var(--color-text-muted, #a0a0a0);
+  color: #BEBDC5;
 }
 
-/* 내부 태그가 들어갈 경우를 대비한 가독성 처리 (선택사항) */
 .detail-members h3,
 .detail-members p {
   margin: 0;
@@ -970,7 +991,7 @@ button {
 
 .schedule-note {
   margin-top: 20px;
-  font-size: 0.875rem; /* 중복 병합 */
+  font-size: 0.875rem;
   color: #71717a;
 }
 
@@ -1118,6 +1139,10 @@ button {
   box-sizing: border-box !important;
 }
 
+.apply-header .container {
+  max-width: 800px;
+}
+
 .apply-header h1,
 .apply-header h2,
 .apply-header p,
@@ -1203,7 +1228,7 @@ button {
 /* 드롭다운 클릭 시 펼쳐지는 옵션 목록 내부 글자색은 기본 색상 유지 */
 .form-select option {
   color: var(--color-text);
-  background-color: var(--color-bg-input); /* 옵션 목록 배경색도 함께 지정해 주면 깔끔합니다 */
+  background-color: var(--color-bg-input);
 }
 
 .form-textarea {
@@ -1233,11 +1258,18 @@ button {
   width: 20px;
   background-color: var(--color-bg-input);
   border: 1px solid var(--color-border);
-  border-radius: 50%;
   margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.checkmark {
+  border-radius: 4px;
+}
+
+.radiomark {
+  border-radius: 50%;
 }
 
 .checkmark.square {
@@ -1273,7 +1305,7 @@ button {
   line-height: 1.6;
   margin-top: 12px;
   margin-left: 0 !important;
-  padding-left: 0 !important;
+  padding-left: 24 !important;
 }
 
 .photo-upload-box {
@@ -1306,18 +1338,17 @@ button {
 .activity-table {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 .activity-row {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 12px;
-  padding-bottom: 20px !important;
-  margin-bottom: 20px !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 15px !important;
   border-bottom: 1px solid var(--color-border);
 }
 
-.activity-row:last-child {
+.activity-row:last-of-type {
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
   border-bottom: none !important;
@@ -1332,6 +1363,7 @@ button {
   cursor: pointer;
   font-weight: 600;
   transition: background 0.2s;
+  margin-top: 12px;
 }
 .btn-add:hover {
   background-color: var(--color-border);
@@ -1345,7 +1377,7 @@ button {
   flex-wrap: wrap !important;
   justify-content: flex-start !important;
   align-items: center !important;
-  gap: 10px 16px !important;
+  gap: 10px 30px !important;
   width: 100% !important;
 }
 
@@ -1447,6 +1479,9 @@ input[name="skillOther"] {
   margin-top: 40px;
 }
 .btn-submit {
+  display: block;
+  margin: 40px auto 0;
+  
   background-color: var(--color-purple);
   color: white;
   border: none;
@@ -1459,6 +1494,7 @@ input[name="skillOther"] {
   cursor: pointer;
   transition: opacity 0.2s;
 }
+
 .btn-submit:hover {
   opacity: 0.9;
 }
@@ -1519,28 +1555,32 @@ input[name="skillOther"] {
 .footer-logo {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 필요에 따라 center(중앙 정렬)로 변경 가능 */
-  gap: 2px;                /* 로고 이미지와 이메일 주소 사이의 간격 */
+  align-items: flex-start;
+  gap: 2px;
 }
 
-/* 기존에 쓰시던 이미지 스타일 유지 */
 .footer-logo img {
-  height: 44px;
+  height: 22px;
   width: auto;
+  margin-bottom: 15px;
 }
 
-/* 새로 추가되는 이메일 스타일 */
+.footer-copyright{
+  font-size: 0.6rem;
+  color: #e2dcfc;
+}
+
 .footer-email {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: 400;
-  color: #3f13ad;     /* 보라색 포인트 컬러 */
+  color: #e2dcfc;
   text-decoration: none;
   transition: opacity 0.2s;
 }
 
 .footer-email:hover {
   opacity: 0.8;
-  text-decoration: underline;     /* 마우스 올려두었을 때 밑줄 효과 */
+  text-decoration: underline;
 }
 
 .footer-sns {
@@ -1552,14 +1592,11 @@ input[name="skillOther"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  
   background: transparent;
   border: none;
   border-radius: 0;
-  
   width: 32px; 
   height: 32px;
-  
   transition: transform 0.15s, opacity 0.2s;
 }
 
@@ -1612,6 +1649,13 @@ input[name="skillOther"] {
     box-sizing: border-box !important;
   }
 
+  /* Footer Mobile Layout */
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 (중앙 정렬을 원하시면 center로 변경) */
+    gap: 20px; /* footer-logo와 footer-sns 사이 간격 */
+  }
+
   /* Header Navigation */
   .menu-toggle { display: flex; }
   .nav {
@@ -1626,23 +1670,39 @@ input[name="skillOther"] {
     padding: 12px 16px;
   }
   .nav.open { display: flex; }
-  .nav-link { width: 100%; padding: 12px 16px; }
   .header-inner .btn-apply { display: none; }
   .header-inner .btn-apply.mobile-show { display: inline-flex; }
 
-  /* Carousel */
-  .value-carousel {
-    flex-direction: column;
-    gap: 36px;
-  }
-  .value-card {
-    flex: 1 1 100%;
-    width: 100%;
-    max-width: 100%;
-    opacity: 1 !important;
-    transform: none !important;
-    cursor: default;
-  }
+/* Carousel Mobile */
+.value-carousel {
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* 카드 전체: 가로 너비 100% 최대 확장 */
+.value-card {
+  flex: 1 1 100%;
+  width: 100% !important;
+  max-width: 100% !important; /* 제한 없이 꽉 채움 */
+  opacity: 1 !important;
+  transform: none !important;
+  cursor: default;
+}
+
+/* 이미지 영역: 가로 100% / 세로 220px 고정 */
+.value-card-image {
+  width: 100%;
+  height: 220px !important;   /* 높이 220px 고정 */
+  aspect-ratio: auto;        /* 기존 비율 유지 해제 */
+}
+
+/* 이미지 핏 조정 */
+.value-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* 220px 높이에 맞춰 이미지를 꽉 채우고 잉여 부분은 크롭 */
+}
+}
 
   /* Activities & Diagrams */
   .activity-item {
@@ -1662,6 +1722,7 @@ input[name="skillOther"] {
     transform: scale(1.05);
     max-width: 100%;
     height: auto;
+    margin-bottom: 20px;
   }
 
   /* FAQ Override */
@@ -1692,9 +1753,10 @@ input[name="skillOther"] {
   }
   .detail-gallery img {
     width: 100% !important;
-    height: 260px; /* 기존 height:auto와 260px 충돌 해결 */
+    height: auto !important; /* 고정 높이 해제 */
+    aspect-ratio: 48 / 27;   /* 1920x1080 비율 고정 */
     max-width: 100%;
-    object-fit: cover;
+    object-fit: cover;      /* 이미지 비율에 맞게 채움 */
   }
 
   /* Timeline */
@@ -1719,7 +1781,7 @@ input[name="skillOther"] {
   .photo-upload { flex-direction: column; }
   .photo-upload-box { width: 120px; height: 160px; }
 
-  /* Skills Selection */
+  /* Skills Selection (수정 반영 영역) */
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .skills-group {
     display: flex !important;
@@ -1728,9 +1790,25 @@ input[name="skillOther"] {
     gap: 14px !important;
     width: 100% !important;
   }
-  .skills-group .custom-checkbox { width: 100% !important; margin-bottom: 0 !important; }
-  .skill-other { width: 100% !important; display: flex !important; align-items: center !important; gap: 8px !important; }
-  .skill-other .small-input { flex: 1 !important; width: auto !important; }
+  .skills-group > .custom-checkbox { 
+    width: 100% !important; 
+    margin-bottom: 0 !important; 
+  }
+  .skill-other { 
+    width: auto !important; 
+    display: inline-flex !important; 
+    align-items: center !important; 
+    justify-content: flex-start !important;
+    gap: 8px !important; 
+  }
+  .skill-other .custom-checkbox { 
+    width: auto !important; 
+    margin-bottom: 0 !important; 
+  }
+  .skill-other .small-input { 
+    flex: none !important; 
+    width: 120px !important; 
+  }
   
   /* Interview Table Mobile */
   .interview-table { width: 100% !important; border-collapse: collapse !important; margin-top: 12px !important; }
@@ -1744,27 +1822,27 @@ input[name="skillOther"] {
   .btn-cta-large { padding: 14px 48px; width: 100%; }
 }
 
-/* ===== 이메일 복사 중앙 알림창 (이미지 디자인 반영) ===== */
+/* ===== 이메일 복사 중앙 알림창 ===== */
 .custom-alert-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6); /* 뒷배경 딤 처리 */
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  backdrop-filter: blur(2px); /* 약간의 배경 흐림 효과 */
+  backdrop-filter: blur(2px);
 }
 
 .custom-alert-box {
-  background: #23232c; /* 이미지의 어두운 다크 그레이 배경 */
+  background: #23232c;
   width: 320px;
   max-width: 90%;
   padding: 32px 24px 20px 24px;
-  border-radius: 20px; /* 라운드 스타일 */
+  border-radius: 20px;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
@@ -1778,14 +1856,14 @@ input[name="skillOther"] {
 }
 
 .alert-email {
-  color: #a1a1aa; /* 회색 보조 텍스트 */
+  color: #a1a1aa;
   font-size: 0.9rem;
   margin: 0 0 24px 0;
 }
 
 .alert-btn {
   width: 100%;
-  background: #5b21ef; /* 이미지의 보라색 버튼 컬러 */
+  background: #5b21ef;
   color: #ffffff;
   border: none;
   padding: 14px 0;
