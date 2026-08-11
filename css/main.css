@@ -989,8 +989,9 @@ button {
   flex-shrink: 0;
 }
 
+/* 기존 style 수정: margin 정리 */
 .schedule-note {
-  margin-top: 20px;
+  margin-top: 0; /* 부모 div에서 여백을 관리하므로 제거 */
   font-size: 0.875rem;
   color: #71717a;
 }
@@ -1039,11 +1040,21 @@ button {
 .offline-badge-info {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 8px;
   font-size: 0.9rem;
   color: #a1a1aa;
+  margin-bottom: 0; /* 부모 div에서 여백을 관리하므로 제거 */
+  white-space: nowrap; /* 글자가 깨지지 않도록 설정 */
+}
+
+/* 새로 추가된 감싸는 영역 */
+.schedule-sub-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 좌측에 안내 문구, 우측에 대면 표시 배치 */
+  margin-top: 20px;
   margin-bottom: 20px;
+  gap: 12px;
 }
 
 .offline-dot {
