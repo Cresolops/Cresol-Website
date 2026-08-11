@@ -161,7 +161,7 @@ button { cursor: pointer; border: none; background: none; }
 /* ==========================================
    Project Page (project.html)
    ========================================== */
-.page-header { padding: 40px 0 24px; }
+.page-header { max-width: 830px; margin: 30px auto;}
 .page-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; margin-bottom: 20px; }
 
 /* Project Filter Dropdown */
@@ -296,7 +296,7 @@ button { cursor: pointer; border: none; background: none; }
 
 /* 면접 시간표 */
 .interview-table { width: 100%; border-collapse: collapse; border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; }
-.interview-table th, .interview-table td { border: 1px solid var(--color-border); padding: 16px; text-align: center; font-size: 0.9rem; }
+.interview-table th, .interview-table td { border: 1px solid var(--color-border); padding: 13px; text-align: center; font-size: 0.9rem; }
 .interview-table th { background-color: var(--color-bg-input); }
 .custom-checkbox.center { margin: 0; justify-content: center; }
 .custom-checkbox.center .checkmark { margin-right: 0; }
