@@ -1892,3 +1892,200 @@ input[name="skillOther"] {
 .alert-btn:active {
   transform: scale(0.98);
 }
+
+/* ==========================================
+   프로젝트 페이지 (project.html)
+   ========================================== */
+   .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* PC: 가로 3개 배치 */
+    gap: 24px; /* 카드 간 간격 */
+  }
+  
+  /* 태블릿 반응형 (1024px 이하) */
+  @media (max-width: 1024px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr); /* 태블릿: 가로 2개 */
+    }
+  }
+  
+  /* 모바일 반응형 (768px 이하) */
+  @media (max-width: 768px) {
+    .project-grid {
+      grid-template-columns: 1fr; /* 모바일: 가로 1개 (세로 정렬) */
+    }
+  }
+
+/* ==========================================
+   모집 안내 페이지 (recruitment.html)
+   ========================================== */
+
+/* 1. 모집 일정 (4단계 가로 배치) */
+.schedule-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.schedule-step {
+  flex: 1;
+  text-align: center;
+}
+
+.schedule-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 모집 일정 모바일 반응형 */
+@media (max-width: 768px) {
+  .schedule-timeline {
+    flex-direction: column; /* 모바일: 세로 정렬 */
+    gap: 12px;
+  }
+  .schedule-arrow {
+    transform: rotate(90deg); /* 모바일 화살표 아래쪽 방향 전환 */
+  }
+}
+
+/* 2. 16기 기준 상세 일정 (PC 5개 배치 및 반응형) */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* PC: 가로 5개 배치 */
+  gap: 16px;
+}
+
+/* 화면 크기에 따른 반응형 개수 조절 */
+@media (max-width: 1200px) {
+  .week-grid {
+    grid-template-columns: repeat(4, 1fr); /* 1200px 이하: 4개 */
+  }
+}
+
+@media (max-width: 992px) {
+  .week-grid {
+    grid-template-columns: repeat(3, 1fr); /* 992px 이하: 3개 */
+  }
+}
+
+@media (max-width: 768px) {
+  .week-grid {
+    grid-template-columns: repeat(2, 1fr); /* 768px 이하: 2개 */
+  }
+}
+
+@media (max-width: 480px) {
+  .week-grid {
+    grid-template-columns: 1fr; /* 모바일: 1개씩 세로 배치 */
+  }
+}
+
+/* ==========================================
+   지원하기 페이지 (apply.html)
+   ========================================== */
+
+/* 1. 기본 정보 2개 항목 1줄 배치 (이름/생년월일 등) */
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-row .form-group {
+  flex: 1; /* 두 요소가 1:1 비율로 가로 폭 차지 */
+  margin-bottom: 0;
+}
+
+.dob-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 2. 인지 경로 (라디오 버튼 한 줄 배치) */
+.radio-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+/* 3. 교내/대외활동 경험 (날짜, 내용, 기관 한 줄 배치) */
+.activity-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.activity-row .date-input {
+  flex: 1.2; /* 날짜 입력창 크기 조절 */
+}
+
+.activity-row .form-input:not(.date-input) {
+  flex: 2; /* 내용 및 기관 입력창 크기 조절 */
+}
+
+/* 4. 프로그램 활용 능력 (체크박스 항목들 한 줄 배치) */
+.skills-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* 화면 크기에 맞춰 자연스럽게 나열 */
+  gap: 20px;
+}
+
+.skill-other {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 5. 포트폴리오 (메일 + 링크 첨부 한 줄 배치) */
+.portfolio-inputs {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.portfolio-mail {
+  white-space: nowrap; /* 이메일 주소 줄바꿈 방지 */
+  font-weight: 500;
+}
+
+.portfolio-link-wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1; /* 남은 공간을 입력창이 차지 */
+  gap: 8px;
+}
+
+.portfolio-link-wrapper .form-input {
+  width: 100%;
+}
+
+/* 지원하기 페이지 모바일 반응형 (768px 이하) */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .radio-group,
+  .skills-group {
+    gap: 12px;
+  }
+
+  .activity-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .portfolio-inputs {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
