@@ -273,7 +273,7 @@ function initVisionCarousel() {
 
   function startAutoPlay() {
     stopAutoPlay();
-    timer = setInterval(nextSlide, 8000);
+    timer = setInterval(nextSlide, 4000);
   }
 
   function stopAutoPlay() {
