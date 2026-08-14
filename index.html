@@ -31,7 +31,11 @@
     <!-- 4. 파비콘 및 기존 스타일시트 -->
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="css/main.css">
+
+    <!-- 1. <head> 태그 안에 추가 (Swiper CSS) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
+
 <body>
 
   <header class="header">
@@ -67,38 +71,56 @@
 
     <section class="section" id="vision">
       <div class="container">
-        <div class="value-carousel">
-          <article class="value-card">
-            <div class="value-card-image">
-              <img src="images/소개_현직자.png" alt="현직자 초청 강연">
-            </div>
-            <div class="value-card-body">
-              <h3 class="value-card-title">현직자와 특강 & OB 네트워킹</h3>
-              <p class="value-card-text">실무자와 크리솔 OB의 생생한 경험을 듣고, 크리솔 커뮤니티를 통해 함께 성장합니다.</p>
-            </div>
-          </article>
+        <!-- Swiper 컨테이너 적용 -->
+        <div class="swiper value-carousel">
+          <!-- section id="vision" 내부의 swiper-wrapper 부분 -->
+          <div class="swiper-wrapper">
+            <!-- 원본 3개 -->
+            <article class="swiper-slide value-card">
+              <div class="value-card-image"><img src="images/소개_현직자.png" alt="현직자 초청 강연"></div>
+              <div class="value-card-body">
+                <h3 class="value-card-title">현직자와 특강 & OB 네트워킹</h3>
+                <p class="value-card-text">실무자와 크리솔 OB의 생생한 경험을 듣고, 크리솔 커뮤니티를 통해 함께 성장합니다.</p>
+              </div>
+            </article>
+            <article class="swiper-slide value-card">
+              <div class="value-card-image"><img src="images/소개_크리솔로고중앙.png" alt="CRESOL"></div>
+              <div class="value-card-body">
+                <h3 class="value-card-title">사용자의 시선에서, 더 나은 경험을 설계하다</h3>
+                <p class="value-card-text">서비스디자인 프로세스를 통해 사고하는 방법을 배우고, 문제의 본질을 발견해 새로운 경험을 만들어갑니다.</p>
+              </div>
+            </article>
+            <article class="swiper-slide value-card">
+              <div class="value-card-image"><img src="images/소개_한학기.png" alt="CRESOL 한 학기 활동"></div>
+              <div class="value-card-body">
+                <h3 class="value-card-title">한 학기, 하나의 프로젝트</h3>
+                <p class="value-card-text">팀별로 주제를 정해 리서치부터 프로토타입까지 완주합니다. 최종 발표에서는 현직 전문가의 피드백을 받아요.</p>
+              </div>
+            </article>
 
-          <article class="value-card featured">
-            <div class="value-card-image">
-              <img src="images/소개_크리솔로고중앙.png" alt="CRESOL">
-            </div>
-            <div class="value-card-body">
-              <h3 class="value-card-title">사용자의 시선에서, 더 나은 경험을 설계하다</h3>
-              <p class="value-card-text">서비스디자인 프로세스를 통해 사고하는 방법을 배우고, 문제의 본질을 발견해 새로운 경험을 만들어갑니다.</p>
-            </div>
-          </article>
-
-          <article class="value-card">
-            <div class="value-card-image">
-              <img src="images/소개_한학기.png" alt="CRESOL 한 학기 활동">
-            </div>
-            <div class="value-card-body">
-              <h3 class="value-card-title">한 학기, 하나의 프로젝트</h3>
-              <p class="value-card-text">팀별로 주제를 정해 리서치부터 프로토타입까지 완주합니다. 최종 발표에서는 현직 전문가의 피드백을 받아요.</p>
-            </div>
-          </article>
-
-        </div>
+            <!-- 자연스러운 루프를 위해 동일하게 3개 더 복사 (총 6개) -->
+            <article class="swiper-slide value-card">
+              <div class="value-card-image"><img src="images/소개_현직자.png" alt="현직자 초청 강연"></div>
+              <div class="value-card-body">
+                <h3 class="value-card-title">현직자와 특강 & OB 네트워킹</h3>
+                <p class="value-card-text">실무자와 크리솔 OB의 생생한 경험을 듣고, 크리솔 커뮤니티를 통해 함께 성장합니다.</p>
+              </div>
+            </article>
+            <article class="swiper-slide value-card">
+              <div class="value-card-image"><img src="images/소개_크리솔로고중앙.png" alt="CRESOL"></div>
+              <div class="value-card-body">
+                <h3 class="value-card-title">사용자의 시선에서, 더 나은 경험을 설계하다</h3>
+                <p class="value-card-text">서비스디자인 프로세스를 통해 사고하는 방법을 배우고, 문제의 본질을 발견해 새로운 경험을 만들어갑니다.</p>
+              </div>
+            </article>
+            <article class="swiper-slide value-card">
+              <div class="value-card-image"><img src="images/소개_한학기.png" alt="CRESOL 한 학기 활동"></div>
+              <div class="value-card-body">
+                <h3 class="value-card-title">한 학기, 하나의 프로젝트</h3>
+                <p class="value-card-text">팀별로 주제를 정해 리서치부터 프로토타입까지 완주합니다. 최종 발표에서는 현직 전문가의 피드백을 받아요.</p>
+              </div>
+            </article>
+          </div>
       </div>
     </section>
 
@@ -301,6 +323,10 @@
       <button id="custom-alert-close" class="alert-btn">확인</button>
     </div>
   </div>
+  <!-- 1. Swiper JS 라이브러리를 반드시 main.js 보다 먼저 불러옵니다. -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- 2. 커스텀 JS 파일 -->
   <script src="js/main.js"></script>
 </body>
 </html>

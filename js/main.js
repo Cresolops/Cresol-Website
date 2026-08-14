@@ -233,75 +233,34 @@ function initProjectPage() {
   render();
 }
 
-// 4. 비전 캐러셀 제어
+// 4. 비전 캐러셀 제어 (Swiper 적용)
 function initVisionCarousel() {
   const container = document.querySelector(".value-carousel");
   if (!container) return;
 
-  let cards = Array.from(container.querySelectorAll(".value-card"));
-  let timer = null;
-
-  function updateCarousel() {
-    if (window.innerWidth <= 768) {
-      cards.forEach((card) => card.classList.remove("active"));
-      return;
-    }
-
-    cards.forEach((card, index) => {
-      container.appendChild(card);
-      if (index === 1) {
-        card.classList.add("active");
-      } else {
-        card.classList.remove("active");
+  new Swiper(".value-carousel", {
+    loop: true,                 // 무한 루프
+    centeredSlides: true,       // 활성 슬라이드를 중앙에 배치
+    slidesPerView: 1.5,         // 모바일에서는 중앙 카드 + 양옆 카드의 끝부분만 살짝 보이게
+    spaceBetween: 20,           // 카드 간격
+    speed: 800,                 // 넘어가고 커지는 효과를 더 부드럽고 자연스럽게 (요청사항 1번)
+    
+    // 오른쪽에서 왼쪽으로 특정 시간에 따라 알아서 넘어가도록 설정 (요청사항 3번)
+    autoplay: {
+      delay: 3000,              // 3초(3000ms)마다 자동으로 다음 슬라이드로 이동
+      disableOnInteraction: false, // 사용자가 클릭하거나 터치해도 자동 재생 유지
+    },
+    
+    // 카드를 클릭하면 그 카드가 중앙으로 부드럽게 이동 (요청사항 4번)
+    slideToClickedSlide: true,  
+    
+    breakpoints: {
+      // 768px 이상 (PC/태블릿)에서는 두 번째 사진처럼 3개의 카드를 동시에 보여줌
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
       }
-    });
-  }
-
-  function nextSlide() {
-    if (window.innerWidth <= 768) return;
-    const firstCard = cards.shift();
-    cards.push(firstCard);
-    updateCarousel();
-  }
-
-  function prevSlide() {
-    if (window.innerWidth <= 768) return;
-    const lastCard = cards.pop();
-    cards.unshift(lastCard);
-    updateCarousel();
-  }
-
-  function startAutoPlay() {
-    stopAutoPlay();
-    timer = setInterval(nextSlide, 4000);
-  }
-
-  function stopAutoPlay() {
-    if (timer) clearInterval(timer);
-  }
-
-  container.addEventListener("click", (e) => {
-    if (window.innerWidth <= 768) return;
-
-    const clickedCard = e.target.closest(".value-card");
-    if (!clickedCard) return;
-
-    const clickedIndex = cards.indexOf(clickedCard);
-
-    if (clickedIndex === 0) {
-      prevSlide();
-      startAutoPlay();
-    } else if (clickedIndex === 2) {
-      nextSlide();
-      startAutoPlay();
     }
-  });
-
-  updateCarousel();
-  startAutoPlay();
-
-  window.addEventListener("resize", () => {
-    updateCarousel();
   });
 }
 
