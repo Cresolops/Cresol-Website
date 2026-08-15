@@ -2,7 +2,16 @@
 const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyDhHHndI_ATLh_dhQtGvm-bOetDuq4HeSZ4TzkbVQZX_huNuAg2qmCvIGvFiS8H0fp/exec";
 const STORAGE_KEY = "cresol_apply_draft";
 
+// ===== 지원서 마감일 설정 =====
+// 다음 기수 모집 시 아래 날짜(연·월·일)만 변경하면 됩니다.
+// 예) 2027년 9월 15일 23:59:59 마감 → new Date("2027-09-15T23:59:59")
+// T23:59:59는 해당 날짜 밤 11시 59분 59초까지 접수를 허용합니다.
+const DEADLINE = new Date("2026-08-20T23:59:59"); // 8월 20일 자정(23:59:59) 마감
+
 const form = document.getElementById("apply-form");
+const applyContent = document.getElementById("apply-content");
+const successMessage = document.getElementById("success-message");
+const btnComplete = document.getElementById("btn-complete");
 const submitBtn = document.getElementById("submit-btn");
 const photoInput = document.getElementById("photoInput");
 const photoUploadBoxSpan = document.querySelector(".photo-upload-box span");
@@ -13,12 +22,14 @@ let photoData = { base64: "", name: "" };
 window.addEventListener("DOMContentLoaded", () => {
   initBirthSelects();             // 1. 생년월일 드롭다운 옵션 생성
   initActivityButton();           // 2. 교내/대외활동 추가 버튼 이벤트 연결
-  handleInterviewTableResponsive(); // 3. 면접 시간 표 반응형 초기화
-  restoreDraft();                 // 4. 임시저장 불러오기
-});
+  restoreDraft();                 // 3. 임시저장 불러오기
 
-// 화면 크기 변경 시 면접 표 반응형 처리
-window.addEventListener("resize", handleInterviewTableResponsive);
+  if (btnComplete) {
+    btnComplete.addEventListener("click", () => {
+      location.href = "index.html";
+    });
+  }
+});
 
 // 폼 입력 시 자동 저장
 form.addEventListener("input", saveDraft);
@@ -241,9 +252,25 @@ function validateForm(data) {
   return null;
 }
 
-// ===== 7. 폼 제출 처리 =====
+// ===== 7. 제출 완료 화면 전환 =====
+function showSuccessScreen() {
+  if (applyContent) applyContent.style.display = "none";
+  if (successMessage) {
+    successMessage.hidden = false;
+    successMessage.classList.add("is-visible");
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ===== 8. 폼 제출 처리 =====
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  // 마감 기한 초과 시 제출 차단 (DEADLINE 상수만 변경하면 다음 기수에도 재사용 가능)
+  if (new Date() > DEADLINE) {
+    alert("모집 기간이 마감되었습니다.");
+    return;
+  }
 
   const payload = collectFormData();
   const errorMessage = validateForm(payload);
@@ -269,12 +296,8 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(payload),
     });
 
-    alert("지원서가 성공적으로 제출되었습니다!");
     localStorage.removeItem(STORAGE_KEY);
-    form.reset();
-
-    photoData = { base64: "", name: "" };
-    if (photoUploadBoxSpan) photoUploadBoxSpan.innerHTML = "+<br>증명사진 첨부";
+    showSuccessScreen();
 
   } catch (error) {
     console.error("제출 에러:", error);
@@ -284,61 +307,3 @@ form.addEventListener("submit", async (e) => {
     submitBtn.textContent = "제출하기";
   }
 });
-
-// ===== 8. 면접 날짜 표 반응형 행/열 전환 함수 =====
-function handleInterviewTableResponsive() {
-  const table = document.querySelector('.interview-table');
-  if (!table) return;
-
-  const isMobile = window.innerWidth <= 768;
-  const currentMode = table.getAttribute('data-responsive-mode');
-
-  // 1) 최초 진입 시 모드 판별
-  if (!currentMode) {
-    if (!isMobile) {
-      // PC 모드에서는 원본 표(시간=열, 요일=행) 그대로 사용
-      table.setAttribute('data-responsive-mode', 'desktop');
-      return;
-    } else {
-      // 모바일 최초 진입 시 반전 수행
-      table.setAttribute('data-responsive-mode', 'mobile');
-    }
-  } else {
-    // 이미 현재 모드와 화면 설정이 일치하면 아무 작업 하지 않음
-    if ((isMobile && currentMode === 'mobile') || (!isMobile && currentMode === 'desktop')) {
-      return;
-    }
-  }
-
-  // 2) 행과 열 반전 (Transpose)
-  const rows = Array.from(table.querySelectorAll('tr'));
-  if (rows.length === 0) return;
-
-  const matrix = rows.map(row => Array.from(row.children));
-  const rowCount = matrix.length;
-  const colCount = matrix[0].length;
-
-  const newTable = document.createElement('table');
-  newTable.className = table.className;
-  newTable.setAttribute('data-responsive-mode', isMobile ? 'mobile' : 'desktop');
-
-  const thead = document.createElement('thead');
-  const tbody = document.createElement('tbody');
-
-  for (let col = 0; col < colCount; col++) {
-    const newTr = document.createElement('tr');
-    for (let row = 0; row < rowCount; row++) {
-      const cell = matrix[row][col].cloneNode(true);
-      newTr.appendChild(cell);
-    }
-    if (col === 0) {
-      thead.appendChild(newTr);
-    } else {
-      tbody.appendChild(newTr);
-    }
-  }
-
-  newTable.appendChild(thead);
-  newTable.appendChild(tbody);
-  table.parentNode.replaceChild(newTable, table);
-}

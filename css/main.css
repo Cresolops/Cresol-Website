@@ -203,7 +203,7 @@ button { cursor: pointer; border: none; background: none; }
 /* ==========================================
    Project Page (project.html)
    ========================================== */
-.page-header { max-width: 1130px; margin: 30px auto;}
+.page-header { max-width: 850px; margin: 30px auto;}
 .page-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; margin-bottom: 20px; }
 
 /* Project Filter Dropdown */
@@ -373,12 +373,38 @@ button { cursor: pointer; border: none; background: none; }
 .skill-other { display: flex; align-items: center; gap: 8px; }
 .small-input { width: 120px; padding: 8px 12px; }
 
-/* 면접 시간표 */
-.interview-table { width: 100%; border-collapse: collapse; border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; }
-.interview-table th, .interview-table td { border: 1px solid var(--color-border); padding: 13px; text-align: center; font-size: 0.9rem; }
-.interview-table th { background-color: var(--color-bg-input); }
-.custom-checkbox.center { margin: 0; justify-content: center; }
-.custom-checkbox.center .checkmark { margin-right: 0; }
+/* 면접 시간표 — PC: 그리드 표 / 모바일: 날짜별 세로 블록 */
+.interview-schedule-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.interview-schedule {
+  display: grid;
+  grid-template-columns: 110px repeat(9, minmax(72px, 1fr));
+  min-width: 720px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg-input);
+}
+.interview-row { display: contents; }
+.interview-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+.interview-row--head .interview-cell { background-color: var(--color-bg-light); font-weight: 600; }
+.interview-cell--corner,
+.interview-cell--day { font-weight: 700; background-color: var(--color-bg-light); }
+.interview-cell--day { justify-content: center; }
+.interview-cell--empty { color: var(--color-text-muted); }
+.interview-slot-time { display: none; }
+.interview-schedule .custom-checkbox.center { margin: 0; justify-content: center; }
+.interview-schedule .custom-checkbox.center .checkmark { margin-right: 0; }
 
 /* 포트폴리오 (가로 한 줄) */
 .portfolio-inputs { display: flex; align-items: center; gap: 20px; }
@@ -392,12 +418,16 @@ button { cursor: pointer; border: none; background: none; }
 .btn-submit { background-color: var(--color-purple); color: white; padding: 18px 0; width: 100%; max-width: 320px; font-size: 1.1rem; font-weight: 700; border-radius: 8px; transition: opacity 0.2s; }
 .btn-submit:hover { opacity: 0.9; }
 
-/* ===== Complete Page ===== */
-.complete-section { min-height: calc(100vh - var(--header-height) - 120px); display: flex; flex-direction: column; justify-content: center; padding: 64px 0; }
-.complete-title { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; margin-bottom: 16px; }
-.complete-desc { font-size: 1rem; color: var(--color-text-muted); margin-bottom: 48px; line-height: 1.7; }
-.btn-complete { display: inline-flex; padding: 14px 56px; background: var(--color-bg-card); color: var(--color-text); font-size: 0.95rem; font-weight: 600; border-radius: var(--radius); border: 1px solid var(--color-border); }
-.btn-complete:hover { border-color: var(--color-purple); }
+/* ===== Apply Complete Screen ===== */
+.complete-section { display: none; min-height: calc(100vh - var(--header-height) - 120px); padding: 48px 0 80px; }
+.complete-section.is-visible { display: flex; flex-direction: column; }
+.complete-inner { flex: 1; display: flex; flex-direction: column; justify-content: space-between; min-height: calc(100vh - var(--header-height) - 200px); }
+.complete-content { text-align: left; padding-top: 24px; }
+.complete-title { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; color: var(--color-text); margin-bottom: 16px; }
+.complete-desc { font-size: 1rem; color: var(--color-text-muted); line-height: 1.7; }
+.complete-actions { display: flex; justify-content: center; padding-top: 48px; }
+.btn-complete { display: inline-flex; align-items: center; justify-content: center; min-width: 280px; padding: 14px 56px; background: #333335; color: var(--color-text); font-size: 0.95rem; font-weight: 600; border-radius: 10px; border: none; cursor: pointer; transition: background 0.2s; }
+.btn-complete:hover { background: #3d3d40; }
 
 /* ===== Footer ===== */
 .footer { background: var(--color-bg); border-top: 1px solid var(--color-border); padding: 32px 0; }
@@ -488,9 +518,45 @@ button { cursor: pointer; border: none; background: none; }
   .portfolio-inputs { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
   .photo-upload-box { margin: 0 auto; }
   
-  /* Interview Table Mobile */
-  .interview-table { width: 100%; }
-  .interview-table th, .interview-table td { padding: 12px 8px; font-size: 0.85rem; }
+  /* Interview Schedule Mobile — 날짜별 세로 블록 */
+  .interview-schedule-wrap { overflow-x: visible; }
+  .interview-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+  }
+  .interview-row { display: flex; flex-direction: column; width: 100%; border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; background: var(--color-bg-input); }
+  .interview-row--head { display: none; }
+  .interview-cell {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    justify-content: space-between;
+    text-align: left;
+    padding: 14px 16px;
+  }
+  .interview-cell:last-child { border-bottom: none; }
+  .interview-cell--day {
+    justify-content: flex-start;
+    font-size: 0.95rem;
+    background-color: var(--color-bg-light);
+  }
+  .interview-cell--corner { display: none; }
+  .interview-cell--empty { display: none; }
+  .interview-cell--slot { min-height: 52px; }
+  .interview-slot-time {
+    display: inline;
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    margin-right: 12px;
+  }
+  .interview-schedule .custom-checkbox.center { justify-content: flex-end; flex-shrink: 0; }
+  .interview-schedule .custom-checkbox.center .checkmark { width: 24px; height: 24px; }
 }
 
 /* 6. 초소형 모바일 기기 (480px 이하) */

@@ -26,7 +26,7 @@
   </header>
 
   <main>
-    <div class="apply-header"> 
+    <div id="apply-content" class="apply-header">
       <section class="page-header">
         <div class="container">
           <h1 class="page-title">CRESOL 16기 지원서</h1>
@@ -200,51 +200,84 @@
           <div class="form-group">
             <label class="form-label">참여 가능한 면접 날짜</label>
             <p class="section-desc">※ 정해진 면접 시간은 변경할 수 없으니, 신중하게 체크해 주시기 바랍니다.<br>※ 중복 선택 가능</p>
-            <table class="interview-table" style="min-width: 900px; white-space: nowrap;">
-              <thead>
-                <tr>
-                  <th>날짜</th>
-                  <th>13:00~14:00</th>
-                  <th>14:00~15:00</th>
-                  <th>15:00~16:00</th>
-                  <th>16:00~17:00</th>
-                  <th>17:00~18:00</th>
-                  <th>18:00~19:00</th>
-                  <th>19:00~20:00</th>
-                  <th>20:00~21:00</th>
-                  <th>21:00~22:00</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- 8/23 (일) : 15:00 ~ 22:00 -->
-                <tr>
-                  <td style="font-weight: 700;">8/23(일)</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 15:00~16:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 16:00~17:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 17:00~18:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 18:00~19:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 19:00~20:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 20:00~21:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 21:00~22:00"><span class="checkmark square"></span></label></td>
-                </tr>
-                
-                <!-- 8/24 (월) : 13:00 ~ 18:00 -->
-                <tr>
-                  <td style="font-weight: 700;">8/24(월)</td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 13:00~14:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 14:00~15:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 15:00~16:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 16:00~17:00"><span class="checkmark square"></span></label></td>
-                  <td><label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 17:00~18:00"><span class="checkmark square"></span></label></td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="interview-schedule-wrap">
+              <div class="interview-schedule" role="group" aria-label="참여 가능한 면접 날짜">
+                <div class="interview-row interview-row--head">
+                  <div class="interview-cell interview-cell--corner">날짜</div>
+                  <div class="interview-cell">13:00~14:00</div>
+                  <div class="interview-cell">14:00~15:00</div>
+                  <div class="interview-cell">15:00~16:00</div>
+                  <div class="interview-cell">16:00~17:00</div>
+                  <div class="interview-cell">17:00~18:00</div>
+                  <div class="interview-cell">18:00~19:00</div>
+                  <div class="interview-cell">19:00~20:00</div>
+                  <div class="interview-cell">20:00~21:00</div>
+                  <div class="interview-cell">21:00~22:00</div>
+                </div>
+
+                <div class="interview-row" data-day="8/23(일)">
+                  <div class="interview-cell interview-cell--day">8/23(일)</div>
+                  <div class="interview-cell interview-cell--slot interview-cell--empty" data-time="13:00~14:00">-</div>
+                  <div class="interview-cell interview-cell--slot interview-cell--empty" data-time="14:00~15:00">-</div>
+                  <div class="interview-cell interview-cell--slot" data-time="15:00~16:00">
+                    <span class="interview-slot-time">15:00~16:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 15:00~16:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="16:00~17:00">
+                    <span class="interview-slot-time">16:00~17:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 16:00~17:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="17:00~18:00">
+                    <span class="interview-slot-time">17:00~18:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 17:00~18:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="18:00~19:00">
+                    <span class="interview-slot-time">18:00~19:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 18:00~19:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="19:00~20:00">
+                    <span class="interview-slot-time">19:00~20:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 19:00~20:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="20:00~21:00">
+                    <span class="interview-slot-time">20:00~21:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 20:00~21:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="21:00~22:00">
+                    <span class="interview-slot-time">21:00~22:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="23일 21:00~22:00"><span class="checkmark square"></span></label>
+                  </div>
+                </div>
+
+                <div class="interview-row" data-day="8/24(월)">
+                  <div class="interview-cell interview-cell--day">8/24(월)</div>
+                  <div class="interview-cell interview-cell--slot" data-time="13:00~14:00">
+                    <span class="interview-slot-time">13:00~14:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 13:00~14:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="14:00~15:00">
+                    <span class="interview-slot-time">14:00~15:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 14:00~15:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="15:00~16:00">
+                    <span class="interview-slot-time">15:00~16:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 15:00~16:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="16:00~17:00">
+                    <span class="interview-slot-time">16:00~17:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 16:00~17:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot" data-time="17:00~18:00">
+                    <span class="interview-slot-time">17:00~18:00</span>
+                    <label class="custom-checkbox center"><input type="checkbox" name="interview" value="24일 17:00~18:00"><span class="checkmark square"></span></label>
+                  </div>
+                  <div class="interview-cell interview-cell--slot interview-cell--empty" data-time="18:00~19:00">-</div>
+                  <div class="interview-cell interview-cell--slot interview-cell--empty" data-time="19:00~20:00">-</div>
+                  <div class="interview-cell interview-cell--slot interview-cell--empty" data-time="20:00~21:00">-</div>
+                  <div class="interview-cell interview-cell--slot interview-cell--empty" data-time="21:00~22:00">-</div>
+                </div>
+              </div>
+            </div>
           </div>
       
           <div class="form-group portfolio-group">
@@ -266,6 +299,18 @@
         </div>
       </form>
     </div>
+
+    <section id="success-message" class="complete-section" aria-live="polite" hidden>
+      <div class="container complete-inner">
+        <div class="complete-content">
+          <h1 class="complete-title">지원서를 제출하였습니다</h1>
+          <p class="complete-desc">Cresol에 관심을 가지고 지원해 주셔서 감사드립니다.</p>
+        </div>
+        <div class="complete-actions">
+          <button type="button" id="btn-complete" class="btn-complete">확인</button>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
