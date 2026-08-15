@@ -244,14 +244,10 @@ button { cursor: pointer; border: none; background: none; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
-  background-color: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  color: #BEBDC5;
   text-decoration: none;
-  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.2s ease;
   margin-bottom: 20px; /* 아래 콘텐츠와의 간격 */
   cursor: pointer;
